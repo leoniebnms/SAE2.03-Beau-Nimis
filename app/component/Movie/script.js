@@ -13,7 +13,7 @@ Movie.format = function (data, css = "") {
   let menuHTML = "";
   for (let menu of data.menus) {
     let li = templateli; 
-    li = li.replace("{{affiche}}", menu.affiche);
+    li = li.replace("{{affiche}}", "../images/" + menu.affiche);
     li = li.replace("{{title}}", menu.title);
    
     menuHTML += li;
