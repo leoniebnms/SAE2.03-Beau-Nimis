@@ -1,0 +1,40 @@
+.movie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: auto;
+  padding-block: 1rem;
+}
+
+.movie__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.movie__items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  border-radius: 1rem;
+  color: white;
+  background-color: black;
+}
+
+.movie__img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover; 
+}
+
+.movie__title {
+  font-size: 2.5rem;
+  color: white;
+}
+
