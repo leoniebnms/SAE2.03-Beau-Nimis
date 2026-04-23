@@ -1,15 +1,21 @@
+.movie{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .movie__items {
   display: flex;
   flex-direction: column;
   justify-content: left;
-  width: 20rem;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  border-radius: 1rem;
+  align-items: left;
+  gap: 1rem;
+
 }
 
 .movie__image {
-  width: 30rem;
+  width: 5rem;
   height: auto;
   object-fit: cover; 
 }
