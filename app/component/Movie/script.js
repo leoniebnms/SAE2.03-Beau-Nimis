@@ -1,8 +1,4 @@
-let templateFile = await fetch("./component/Movie/template.html");
-let template = await templateFile.text();
 
-let templateFile = await fetch("./component/Movie/template-message.html");
-let template = await templateFile.text();
 
 
 let Movie = {};
@@ -15,6 +11,10 @@ Movie.format =  async function (movies) {
     let response = await fetch("./component/Movie/template-message.html");
     return await response.text();
   }
+
+  let templateFile = await fetch("./component/Movie/template.html");
+  let template = await templateFile.text();
+
 
   
   let menuItems = "";
