@@ -1,10 +1,17 @@
-.content {
+#content {
   display: flex;
   flex-direction: row;
   justify-content: center;
-
+  flex-wrap: wrap; 
   gap: 2rem;
-  padding: 2rem;  
+  padding: 2rem;
+}
+
+.movie-message {
+  text-align: center;
+  width: 100%; 
+  font-style: italic;
+  margin-top: 5rem;
 }
 
 .movie{
