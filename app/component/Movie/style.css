@@ -12,7 +12,8 @@
   align-items: center;
   width: fit-content;
   padding: 1rem;
-  border:  2px solid var(--color-black);
+  border:  2px solid var(--color-gray);
+  background-color: var(--color-gray-light);
   border-radius: 1rem;
 }
 
