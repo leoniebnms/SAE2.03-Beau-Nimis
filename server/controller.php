@@ -25,3 +25,24 @@ function readMoviesController(){
     $movies = getAllMovies();
     return $movies;
 }
+
+
+function AddMovieController(){
+    $titre = $_POST['titre'] ?? "";
+    $real  = $_POST['realisateur'] ?? "";
+    $annee = $_POST['annee'] ?? "";
+    $duree = $_POST['duree'] ?? "";
+    $syno = $_POST['synopsis'] ?? "";
+    $cat = $_POST['categorie'] ?? "";
+    $aff = $_POST['affiche'] ?? "";
+    $url = $_POST['url'] ?? "";
+    $restr = $_POST['restrictions'] ?? "";
+
+    if ($titre && $real) {
+        $success = addMovie($titre, $real, $annee, $duree, $desc, $cat, $aff, $url, $restr); 
+        if ($success) {
+            return ["status" => "success", "message" => "Le film '$titre' a été ajouté !"];
+        }
+    }
+    return false;
+}

@@ -32,3 +32,17 @@ function getAllMovies(){
     $res = $stmt->fetchAll(PDO::FETCH_OBJ);
     return $res; // Retourne les résultats
 }
+
+function AddMovie($titre, $real, $annee, $duree, $desc, $cat, $aff, $url, $restr){
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    // Requête SQL pour récupérer le menu avec des paramètres
+    $sql = "insert into SAE203_Movie (name, realisateur, annee, duree, synopsis, categorie, affiche, url, restrictions) values ('$titre', '$real', '$annee', '$duree', '$syno', '$cat', '$aff', '$url', '$restr')";
+    // Prépare la requête SQL
+    $stmt = $cnx->prepare($sql);
+    // Exécute la requête SQL
+    $stmt->execute();
+    // Récupère les résultats de la requête sous forme d'objets
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $res; // Retourne les résultats
+}

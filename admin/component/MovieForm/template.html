@@ -1,0 +1,18 @@
+<div class="addMovie">
+    <h4 class="addMovie__title"># Ajouter un film</h4>
+    <form class="addMovie__form">
+ 
+        <input required type="text" name="titre" placeholder="Titre du film" pattern="[^0-9]*" title="Numbers are not allowed">
+        <input required type="text" name="réalisateur" placeholder="Nom du réalisateur" pattern="[^0-9]*" title="Numbers are not allowed">
+        <input required type="number" name="année de sortie" placeholder="Année de sortie du film" pattern="[^0-9]*" title="Numbers are not allowed">
+        <input required type="number" name="duree" placeholder="Durée (min)" pattern="[^0-9]*" title="Numbers are not allowed">
+        <textarea name="synopsis" placeholder="Synopsis"></textarea>
+        <input required type="text" name="categorie" placeholder="Catégorie (Action, Aventure, Animation)" pattern="[^0-9]*" title="Numbers are not allowed">
+        <input required type="text" name="affiche" placeholder="Nom du fichier de l'affiche" pattern="[^0-9]*" title="Numbers are not allowed">
+        <input required type="text" name="url" placeholder="URL du trailer" pattern="[^0-9]*" title="Numbers are not allowed">
+        <input required type="text" name="restrictions" placeholder="Restrictions d'âge" pattern="[^0-9]*" title="Numbers are not allowed">
+
+        <input onclick="C.handlerAddMovie()" type="button" value="Ajouter le film" name="todo">
+
+    </form>
+</div>
