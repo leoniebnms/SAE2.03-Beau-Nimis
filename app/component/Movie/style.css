@@ -37,3 +37,11 @@
   color: var(--color-black);
 }
 
+.movie-empty-message {
+  display: none;
+}
+
+.movies-container:empty + .movie-empty-message {
+  display: block;
+  text-align: center;
+}
