@@ -1,27 +1,36 @@
 .movie{
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  background-color: var(--color-gray-light);
+  border-radius: 1rem;
 }
 
 .movie__items {
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  align-items: left;
-  gap: 1rem;
+  justify-content: center;
+  align-items: start;
+  gap: 0.5rem;
 
 }
 
 .movie__image {
-  width: 5rem;
-  height: auto;
-  object-fit: cover; 
+  width: 8rem;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: 0.5rem; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
 }
 
 .movie__name {
-  font-size: 2.5rem;
-  color: black;
+  font-size: 1.75rem;
+  font-weight: bold;
+  line-height: 1.2;
+  color: var(--color-black);
+  margin: 0;
 }
 
