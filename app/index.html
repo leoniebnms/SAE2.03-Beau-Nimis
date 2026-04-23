@@ -30,12 +30,12 @@
 
        C.handlerMovie = async function () {
         const movies = await DataMovie.requestMovies();
-        V.renderMovie(movies);
+        await V.renderMovie(movies);
        };
 
       C.start = function () {
         V.renderNavBar("C.handlerAbout()");
-        V.renderMovie("C.handlerMovie()");
+        C.handlerMovie();
       };
 
       // Vue (contient tout ce qui est relatif à l'affichage)

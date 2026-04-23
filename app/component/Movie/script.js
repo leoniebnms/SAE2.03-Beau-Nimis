@@ -9,8 +9,8 @@ let template = await templateFile.text();
     let item = template;
 
 
-    item = item.replace("{{image}}", image);
-    item = item.replaceAll("{{name}}", name);
+    item = item.replace("{{image}}", movie.image);
+    item = item.replaceAll("{{name}}", movie.name);
     menuItems += item;
   }
   return menuItems;
