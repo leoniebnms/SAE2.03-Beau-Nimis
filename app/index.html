@@ -29,7 +29,7 @@
       };
 
        C.handlerMovie = async function () {
-        const movies = await DataMovie.requestMovies();
+        const movies = [];
         await V.renderMovie(movies);
        };
 
