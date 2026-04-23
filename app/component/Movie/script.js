@@ -1,6 +1,10 @@
 let templateFile = await fetch("./component/Movie/template.html");
 let template = await templateFile.text();
 
+let templateFile = await fetch("./component/Movie/template-message.html");
+let template = await templateFile.text();
+
+
 let Movie = {};
 
 Movie.format =  async function (movies) {
@@ -12,9 +16,7 @@ Movie.format =  async function (movies) {
     return await response.text();
   }
 
-//   let response = await fetch("./component/Movie/template.html");
-//   let template = await response.text();
-
+  
 //   let menuItems = "";
 //   for (let movie of movies) {
 //     let item = template;
