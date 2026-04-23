@@ -17,7 +17,7 @@
 
 }
 
-.movie__image {
+.movie__img {
   width: 8rem;
   aspect-ratio: 2/3;
   object-fit: cover;
