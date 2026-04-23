@@ -17,16 +17,16 @@ Movie.format =  async function (movies) {
   }
 
   
-//   let menuItems = "";
-//   for (let movie of movies) {
-//     let item = template;
+  let menuItems = "";
+  for (let movie of movies) {
+    let item = template;
 
 
-//     item = item.replace("{{image}}", movie.image);
-//     item = item.replaceAll("{{name}}", movie.name);
-//     menuItems += item;
-//   }
-//   return menuItems;
+    item = item.replace("{{image}}", movie.image);
+    item = item.replaceAll("{{name}}", movie.name);
+    menuItems += item;
+  }
+  return menuItems;
 }
 
 export { Movie };
