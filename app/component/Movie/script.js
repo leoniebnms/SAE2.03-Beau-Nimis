@@ -1,6 +1,4 @@
 
-
-
 let Movie = {};
 
 Movie.format =  async function (movies) {

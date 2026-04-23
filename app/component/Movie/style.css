@@ -38,11 +38,6 @@
 }
  */
 
- body {
-  background-color: var(--color-black);
-  margin: 0;
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-}
 
 #content {
   display: flex;
@@ -51,6 +46,7 @@
   flex-wrap: wrap; 
   gap: 2.5rem;
   padding: 3rem;
+  background-color: var(--color-black);
 }
 
 /* On stylise la div container qui entoure chaque film */
@@ -63,55 +59,35 @@
   flex-direction: column; 
   align-items: center;
   width: fit-content;
-  padding: 0; /* On enlève le padding pour que l'image soit bord à bord */
-  border: 1px solid var(--color-gray);
+  padding: 1rem; 
+  border: 1px solid var(--color-white);
   background-color: var(--color-gray-light);
   border-radius: 12px;
-  overflow: hidden; /* Pour que l'image respecte l'arrondi du cadre */
+  overflow: hidden; 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* Effet de zoom au survol de la carte */
+
 .movie:hover {
   transform: translateY(-10px);
-  border-color: var(--accent-color);
-  box-shadow: 0 15px 35px rgba(229, 9, 20, 0.2);
+  box-shadow: 0 15px 35px rgba(206, 206, 206, 0.2);
 }
 
 .movie__img {
-  width: 12rem; /* Légèrement plus grand pour plus de détails */
+  width: 12rem; 
   aspect-ratio: 2/3;
   object-fit: cover;
   margin-bottom: 0; 
-  border-radius: 0; /* On l'intègre au design de la carte */
+  border-radius: 0; 
   transition: filter 0.3s ease;
-}
-
-.movie:hover .movie__img {
-  filter: brightness(1.1); /* L'affiche s'illumine au survol */
 }
 
 .movie__name { 
   width: 10rem;
   margin: 0;
-  padding: 1.2rem 0.5rem; /* On ajoute du souffle autour du texte */
-  text-align: center; /* Centré, c'est plus élégant pour les titres */
+  padding: 1.2rem 0.5rem; 
+  text-align: center; 
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-white);
-  /* Pour éviter que les titres trop longs ne cassent tout */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Style pour ton message "Aucun film" */
-.movie-empty {
-  color: var(--text-white);
-  font-size: 1.5rem;
-  text-align: center;
-  width: 100%;
-  margin-top: 5rem;
-  opacity: 0.7;
-  font-style: italic;
 }
