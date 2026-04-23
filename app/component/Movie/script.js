@@ -1,31 +1,23 @@
-let templateFile = await fetch("./component/Movie/template.html");
-let template = await templateFile.text();
 
-let templateliFile = await fetch("./component/Movie/templateli.html");
-let templateli = await templateliFile.text();
 
 let Movie = {};
 
-Movie.format = function (data, css = "") {
-  let html = template;
-  html = html.replace("{{cssClass}}", css);
+Movie.format =  async function (movies) {
+let templateFile = await fetch("./component/Movie/template.html");
+let template = await templateFile.text();
 
-  let menuHTML = "";
-  for (let menu of data.menus) {
-    let li = templateli; 
-    li = li.replace("{{affiche}}", "../images/" + menu.affiche);
-    li = li.replace("{{title}}", menu.title);
-   
-    menuHTML += li;
+  let menuItems = "";
+  for (let movie of movies) {
+    let item = template;
+
+    let name = movie.name || "Nom inconnu";
+    let image = movie.image || "default.jpg";
+
+    item = item.replace("{{image}}", image);
+    item = item.replaceAll("{{name}}", name);
+    menuItems += item;
   }
-  html = html.replace("{{menuItems}}", menuHTML);
-
-  return html;
-};
-
-Movie.render = function (where, data, css = "") {
-  let node = document.querySelector(where);
-  node.innerHTML += Movie.format(data, css);
-};
+  return menuItems;
+}
 
 export { Movie };
