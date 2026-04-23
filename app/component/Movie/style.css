@@ -12,7 +12,7 @@
   align-items: center;
   width: fit-content;
   padding: 1rem;
-  background-color: var(--color-gray-light);
+  border-color: var(--color-gray-light);
   border-radius: 1rem;
 }
 
