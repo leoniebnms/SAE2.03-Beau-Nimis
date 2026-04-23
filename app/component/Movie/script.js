@@ -5,7 +5,6 @@ let Movie = {};
 
 Movie.format =  async function (movies) {
 
-  data=[]
 
   if (!movies || movies.length === 0) {
     let response = await fetch("./component/Movie/template-message.html");
