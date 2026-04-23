@@ -33,8 +33,8 @@
       C.handlerAddMovie = async function () {
         let form = document.querySelector(".addMovie__form");
         let fd = new FormData(form);
-        let res = await DataMovie.add(fd);
-        V.renderLog(res);
+        let res = await DataMovie.update(fd);
+        V.renderLog(res.message);
       };
 
 
@@ -52,7 +52,7 @@
       };
 
       V.renderMovie = function (handler) {
-        let content = document.querySelector("#log");
+        let content = document.querySelector("#addMovie");
         content.innerHTML = MovieForm.format(handler);
       };
 
