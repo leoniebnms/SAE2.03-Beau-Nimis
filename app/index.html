@@ -28,8 +28,8 @@
         );
       };
 
-       C.handlerMovie = function () {
-        const movies = DataMovie.requestMovies();
+       C.handlerMovie = async function () {
+        const movies = await DataMovie.requestMovies();
         V.renderMovie(movies);
        };
 

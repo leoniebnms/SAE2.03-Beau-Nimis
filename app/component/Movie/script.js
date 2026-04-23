@@ -1,5 +1,3 @@
-
-
 let Movie = {};
 
 Movie.format =  async function (movies) {
@@ -10,8 +8,6 @@ let template = await templateFile.text();
   for (let movie of movies) {
     let item = template;
 
-    let name = movie.name || "Nom inconnu";
-    let image = movie.image || "default.jpg";
 
     item = item.replace("{{image}}", image);
     item = item.replaceAll("{{name}}", name);
