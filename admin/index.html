@@ -35,11 +35,11 @@
         let fd = new FormData(form);
         let res = await DataMovie.add(fd);
         
-        if(res && res.message) {
-          V.renderLog(res.message);
-        } else {
-          V.renderLog("Erreur: Impossible d'ajouter le film.");
-        }
+        // if(res && res.message) {
+        //   V.renderLog(res.message);
+        // } else {
+        //   V.renderLog("Erreur: Impossible d'ajouter le film.");
+        // }
       };
 
 
