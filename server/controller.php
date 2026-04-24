@@ -26,14 +26,8 @@ function readMoviesController(){
     return $movies;
 }
 
-/** updateController
- * 
- * Cette fonction est en charge du traitement des requêtes HTTP pour lesquelles le paramètre 'todo' vaut 'Update'.
- * Elle récupère les valeurs des paramètres 'jour', 'entree', 'plat' et 'dessert' et utilise la fonction updateMenu
- * déclarée dans model.php pour mettre à jour le menu dans la base de données.
- * en fonctiondu résultat de la mise à jour, elle retourne un message indiquant si la mise à jour a réussi ou non.
- */
-function updateController(){
+
+function addMovieController(){
   $titre = $_REQUEST['titre'];
   $real = $_REQUEST['realisateur'];
   $annee = $_REQUEST['annee'];
