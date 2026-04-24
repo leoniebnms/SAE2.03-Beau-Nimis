@@ -34,10 +34,6 @@ function readMoviesController(){
  * en fonctiondu résultat de la mise à jour, elle retourne un message indiquant si la mise à jour a réussi ou non.
  */
 function updateController(){
-  /* Lecture des données de formulaire
-    On ne vérifie pas si les données sont valides, on suppose (faudra pas toujours...) que le client les a déjà
-    vérifiées avant de les envoyer 
-  */
   $titre = $_REQUEST['titre'];
   $real = $_REQUEST['realisateur'];
   $annee = $_REQUEST['annee'];
