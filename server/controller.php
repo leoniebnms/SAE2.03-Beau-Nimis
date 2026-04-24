@@ -28,20 +28,24 @@ function readMoviesController(){
 
 
 function addMovieController(){
-  $titre = $_REQUEST['titre'];
-  $real = $_REQUEST['realisateur'];
-  $annee = $_REQUEST['annee'];
-  $duree = $_REQUEST['duree'];
-  $syno = $_REQUEST['synopsis'];
-  $cat = $_REQUEST['categorie'];
-  $aff = $_REQUEST['affiche'];
-  $url = $_REQUEST['url'];
-  $restr = $_REQUEST['restrictions'];
-  // Mise à jour du menu à l'aide de la fonction updateMenu décrite dans model.php
-  $ok = AddMovie($titre, $real, $annee, $duree, $syno, $cat, $aff, $url, $restr);
-  // $ok est le nombre de ligne affecté par l'opération de mise à jour dans la BDD (voir model.php)
+  $name = isset($_POST['name']) ? $_POST['name'] : null;
+  $year = isset($_POST['year']) ? $_POST['year'] : null;
+  $length = isset($_POST['length']) ? $_POST['length'] : null;
+  $description = isset($_POST['description']) ? $_POST['description'] : null;
+  $director = isset($_POST['director']) ? $_POST['director'] : null;
+  $id_category = isset($_POST['id_category']) ? $_POST['id_category'] : (isset($_POST['category']) ? $_POST['category'] : null);
+  $image = isset($_POST['image']) ? $_POST['image'] : null;
+  $trailer = isset($_POST['trailer']) ? $_POST['trailer'] : null;
+  $min_age = isset($_POST['min_age']) ? $_POST['min_age'] : null;
+
+  if (!$name || !$year || !$length || !$director || !$id_category || !$image || !$trailer || !$min_age) {
+    return false;
+  }
+
+  $ok = AddMovie($name, $year, $length, $description, $director, $id_category, $image, $trailer, $min_age);
+
   if ($ok!=0){
-    return ["message" => "Le film $titre a été ajouté avec succès !"];
+    return ["message" => "Le film $name a été ajouté avec succès !"];
   }
   else{
     return false;
@@ -53,20 +57,20 @@ function readController(){
  
     // PREMIERE VERIFICATION : LES PARAMETRES EXISTENT ET SONT NON VIDES
     // Vérification du paramètre 'jour'
-    if ( isset($_REQUEST['titre'])==false || empty($_REQUEST['titre'])==true ){
+    if ( isset($_REQUEST['name'])==false || empty($_REQUEST['name'])==true ){
       return false;
     }
 
     // DEUXIEME VERIFICATION : LES PARAMETRES EXISTENT MAIS LEUR VALEURS SONT-ELLES VALIDES ?
 
     // $jour doit être un jour de la semaine
-    $titre = $_REQUEST['titre'];
+    $name = $_REQUEST['name'];
   
     
     
     // si on arrive ici c'est que les paramètres existent et sont valides, on peut interroger la BDD
     // Appel de la fonction getMenu déclarée dans model.php pour extraire de la BDD le menu du jour spécifié
-    $movie = getMovie($titre, $real, $annee, $duree, $syno, $cat, $aff, $url, $restr);
+    $movie = getMovie($name, $year, $length, $description, $director, $id_category, $image, $trailer, $min_age);
     return $movie;
 }
 

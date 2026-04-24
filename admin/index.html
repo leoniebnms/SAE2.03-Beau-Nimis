@@ -31,6 +31,12 @@
       
       C.handlerAddMovie = async function () {
         let form = document.querySelector(".addMovie__form");
+
+        if (!form.reportValidity()){
+          V.renderLog("Veuillez remplir tous les champs s'il vous plaît.");
+          return;
+        }
+
         let fd = new FormData(form);
         let res = await DataMovie.add(fd);
         
