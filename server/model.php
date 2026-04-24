@@ -85,7 +85,7 @@ function updateMovie($titre, $real, $annee, $duree, $syno, $cat, $aff, $url, $re
     $stmt->bindParam(':real', $real);
     $stmt->bindParam(':annee', $annee);
     $stmt->bindParam(':duree', $duree);
-    $stmt->bindParam(':desc', $syno);
+    $stmt->bindParam(':syno', $syno);
     $stmt->bindParam(':cat', $cat);
     $stmt->bindParam(':aff', $aff);
     $stmt->bindParam(':url', $url);

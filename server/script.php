@@ -56,8 +56,8 @@ if ( isset($_REQUEST['todo']) ){
       $data = readMoviesController();
       break;
 
-    case 'update':
-      $data = updateController();
+    case 'addMovie':
+      $data = addMovieController();
       break;
 
     case 'read':
