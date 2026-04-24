@@ -37,7 +37,7 @@ function AddMovie($titre, $real, $annee, $duree, $desc, $cat, $aff, $url, $restr
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
-    $sql = "insert into SAE203_Movie (name, realisateur, annee, duree, synopsis, categorie, affiche, url, restrictions) values (:titre, :real, :annee, :duree, :desc, :cat, :aff, :url, :restr)";
+    $sql = "insert into SAE203_Movie (name, realisateur, annee, duree, synopsis, categorie, affiche, url, restrictions) values (:titre, :real, :annee, :duree, :syno, :cat, :aff, :url, :restr)";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
     // Lie le paramètre à la valeur
