@@ -1,5 +1,5 @@
 <div class="addMovie">
-    <h4 class="addMovie__title"># Ajouter un film</h4>
+    <h4 class="addMovie__title">Ajouter un film</h4>
     <form class="addMovie__form">
  
         <input required type="text" name="titre" placeholder="Titre du film" pattern="[^0-9]*" title="Numbers are not allowed">
@@ -12,7 +12,7 @@
         <input required type="text" name="url" placeholder="URL du trailer" pattern="[^0-9]*" title="Numbers are not allowed">
         <input required type="text" name="restrictions" placeholder="Restrictions d'âge" pattern="[^0-9]*" title="Numbers are not allowed">
 
-        <input onclick="C.handlerAddMovie()" type="button" value="Ajouter le film" name="todo">
+        <input onclick="{{handler}}" type="button" value="Ajouter le film" name="todo">
 
     </form>
 </div>
