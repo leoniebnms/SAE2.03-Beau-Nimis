@@ -17,5 +17,5 @@ MovieForm.format = function(handler, categories){
 }
 
 
-export {MovieForm};
+export {MovieForm}; 
 
