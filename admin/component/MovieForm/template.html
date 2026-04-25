@@ -7,17 +7,9 @@
         <input required type="number" name="length" placeholder="Durée (min)">
         <textarea name="description" placeholder="Synopsis"></textarea>
         <input required type="text" name="director" placeholder="Nom du réalisateur" pattern="[^0-9]*" title="Numbers are not allowed">
-        <select class="addMovie_champs" name="id_category" id="category" placeholder="Genre de film">
-            <option value="1">Action</option>
-            <option value="2">Comedie</option>
-            <option value="3">Drame</option>
-            <option value="4">Science-fiction</option>
-            <option value="5">Animation</option>
-            <option value="6">Thriller</option>
-            <option value="7">Horreur</option>
-            <option value="8">Aventure</option>
-            <option value="9">Fantaisie</option>
-            <option value="10">Documentaire</option>
+        <select class="addMovie_champs" name="id_category" id="category">
+            <option value="">-- Choisir un genre --</option>
+            {{categories_options}}
         </select>
 
         <input required type="text" name="image" placeholder="Nom du fichier de l'affiche" pattern="[^0-9]*" title="Numbers are not allowed">

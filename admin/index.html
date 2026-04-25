@@ -48,9 +48,18 @@
       };
 
 
-      C.start = function () {
+      C.start = async function () {
         V.renderLog("Démarrage de l'application");
-        V.renderMovie( "C.handlerAddMovie()" );
+
+        try {
+          let categories = await DataMovie.getCategories();
+          V.renderMovie( "C.handlerAddMovie()", categories );
+          V.renderLog("Catégories chargées avec succès.");
+
+
+        } catch (error) {
+          V.renderLog("Erreur lors du chargement des catégories.");
+        }
       };
 
       
@@ -61,9 +70,9 @@
         content.innerHTML = Log.format(txt);
       };
 
-      V.renderMovie = function (handler) {
+      V.renderMovie = function (handler, categories) {
         let content = document.querySelector("#addMovie");
-        content.innerHTML = MovieForm.format(handler);
+        content.innerHTML = MovieForm.format(handler, categories);
       };
 
       C.start();

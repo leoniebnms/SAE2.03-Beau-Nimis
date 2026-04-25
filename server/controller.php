@@ -74,3 +74,6 @@ function readController(){
     return $movie;
 }
 
+function readCategoriesController(){
+    return getAllCategories();
+}

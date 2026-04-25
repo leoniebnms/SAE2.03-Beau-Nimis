@@ -64,6 +64,10 @@ if ( isset($_REQUEST['todo']) ){
     case 'read':
       $data = readController();
       break;
+      
+    case 'readCategories':
+      $data = readCategoriesController();
+      break;
 
 
     default: // il y a un paramètre todo mais sa valeur n'est pas reconnue/supportée

@@ -38,6 +38,11 @@ DataMovie.add = async function (fdata) {
     return data;
 }
 
+DataMovie.getCategories = async function () {
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=readCategories");
+    return await answer.json();
+}
+
 export {DataMovie};
 
 

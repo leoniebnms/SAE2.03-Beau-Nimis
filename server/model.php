@@ -57,42 +57,16 @@ function AddMovie($name, $year, $length, $description, $director, $id_category, 
     }
 }
 
-
-
-// /**
-//  * Met à jour le menu pour un jour spécifique dans la base de données.
-//  *
-//  * @param string $j Le jour pour lequel le menu est mis à jour.
-//  * @param string $e La nouvelle entrée pour le menu.
-//  * @param string $p Le nouveau plat principal pour le menu.
-//  * @param string $d Le nouveau dessert pour le menu.
-//  * @return int Le nombre de lignes affectées par la requête de mise à jour.
-//  * 
-//  * A SAVOIR: une requête SQL de type update retourne le nombre de lignes affectées par la requête.
-//  * Si la requête a réussi, le nombre de lignes affectées sera 1.
-//  * Si la requête a échoué, le nombre de lignes affectées sera 0.
-//  */
-// function updateMovie($name, $year, $length, $description, $director, $id_category, $image, $trailer, $min_age){
-//     // Connexion à la base de données
-//     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD); 
-//     // Requête SQL de mise à jour du menu avec des paramètres
-//     $sql = "REPLACE INTO SAE203_Movie (name, year, length, description, director, id_category, image, trailer, min_age) 
-//             VALUES (:name, :year, :length, :description, :director, :id_category, :image, :trailer, :min_age)";
-//     // Prépare la requête SQL
-//     $stmt = $cnx->prepare($sql);
-//     // Lie les paramètres aux valeurs
-//     $stmt->bindParam(':name', $name);
-//     $stmt->bindParam(':year', $year);
-//     $stmt->bindParam(':length', $length);
-//     $stmt->bindParam(':description', $description);
-//     $stmt->bindParam(':director', $director);
-//     $stmt->bindParam(':id_category', $id_category);
-//     $stmt->bindParam(':image', $image);
-//     $stmt->bindParam(':trailer', $trailer);
-//     $stmt->bindParam(':min_age', $min_age);
-//     // Exécute la requête SQL
-//     $stmt->execute();
-//     // Récupère le nombre de lignes affectées par la requête
-//     $res = $stmt->rowCount(); 
-//     return $res; // Retourne le nombre de lignes affectées
-// }
+function getAllCategories(){
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    // Requête SQL pour récupérer le menu avec des paramètres
+    $sql = "select id, name from `SAE203_Category`";
+    // Prépare la requête SQL
+    $stmt = $cnx->prepare($sql);
+    // Exécute la requête SQL
+    $stmt->execute();
+    // Récupère les résultats de la requête sous forme d'objets
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $res; // Retourne les résultats
+}
