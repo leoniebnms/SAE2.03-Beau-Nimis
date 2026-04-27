@@ -7,8 +7,8 @@
         <input required type="number" name="length" placeholder="Durée (min)">
         <textarea name="description" placeholder="Synopsis"></textarea>
         <input required type="text" name="director" placeholder="Nom du réalisateur" pattern="[^0-9]*" title="Numbers are not allowed">
-        <select class="addMovie_champs" name="id_category" id="category">
-            <option value="">-- Choisir un genre --</option>
+        <select class="addMovie__champs" name="id_category" id="category">
+            <option value=""> Choisir un genre </option>
             {{categories_options}}
         </select>
 

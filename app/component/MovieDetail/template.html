@@ -1,9 +1,32 @@
-<!-- <div class="movie">
-  <section class="movie">
-    <img src="../server/images/{{image}}" alt="Affiche de {{name}}" class="movie__img">
-    <h2 class="movie__name">{{name}}</h2>
-    <p class="movie__identifiant">{{identifiant}}</p>
-  </section>
+<div class="movie__detail">
+  <div class="movie__detail--header">
+    <img src="../server/images/{{image}}" alt="Affiche de {{name}}" class="movie__detail--img">
+
+    <div class="movie__detail--infos">
+      <h1 class="movie__detail--name">{{name}}</h1>
+      <h2 class="movie__detail--year">{{year}}</h2>
+      <p><strong>Durée :</strong> {{length}} min</p>
+
+      <p><strong>Âge minimum :</strong> {{min_age}} ans</p>
+      <p><strong>Réalisateur :</strong> {{director}}</p>
+      <p><strong>Genre :</strong> {{id_category}}</p>
+      <div class="movie__detail--synopsis">
+        <h5>{{description}}</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="movie-detail__trailer">
+    <h3>Bande-annonce</h3>
+    <iframe 
+      width="100%" 
+      height="450" 
+      src="{{trailer}}" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
 </div>
 
-   -->
+  

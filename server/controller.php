@@ -77,3 +77,23 @@ function readController(){
 function readCategoriesController(){
     return getAllCategories();
 }
+
+function readMovieDetailController(){
+ 
+    // PREMIERE VERIFICATION : LES PARAMETRES EXISTENT ET SONT NON VIDES
+    // Vérification du paramètre 'id'
+    if ( isset($_REQUEST['id'])==false || empty($_REQUEST['id'])==true ){
+      return false;
+    }
+
+    // DEUXIEME VERIFICATION : LES PARAMETRES EXISTENT MAIS LEUR VALEURS SONT-ELLES VALIDES ?
+
+    // $jour doit être un jour de la semaine
+    $id = $_REQUEST['id'];
+    
+    // si on arrive ici c'est que les paramètres existent et sont valides, on peut interroger la BDD
+    // Appel de la fonction getMenu déclarée dans model.php pour extraire de la BDD le menu du jour spécifié
+    $movie = getMovieById($id);
+    return $movie;
+}
+

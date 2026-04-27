@@ -21,6 +21,7 @@ Movie.format =  async function (movies) {
 
     item = item.replace("{{image}}", movie.image);
     item = item.replaceAll("{{name}}", movie.name);
+    item = item.replaceAll("{{id}}", movie.id);
     menuItems += item;
   }
   return menuItems;

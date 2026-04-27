@@ -23,7 +23,7 @@ function getAllMovies(){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
-    $sql = "select id, name, image from `SAE203_Movie`";
+    $sql = "select id, name, image from `SAE203_Movie` ";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
     // Exécute la requête SQL
@@ -68,5 +68,23 @@ function getAllCategories(){
     $stmt->execute();
     // Récupère les résultats de la requête sous forme d'objets
     $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $res; // Retourne les résultats
+}
+
+function getMovieById($id){
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    // Requête SQL pour récupérer le menu avec des paramètres
+    $sql = "SELECT SAE203_Movie.*, SAE203_Category.name AS category_name
+            FROM SAE203_Movie 
+            INNER JOIN SAE203_Category ON SAE203_Movie.id_category = SAE203_Category.id 
+            WHERE SAE203_Movie.id = :id";
+    // Prépare la requête SQL
+    $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    // Exécute la requête SQL
+    $stmt->execute();
+    // Récupère les résultats de la requête sous forme d'objets
+    $res = $stmt->fetch(PDO::FETCH_OBJ);
     return $res; // Retourne les résultats
 }

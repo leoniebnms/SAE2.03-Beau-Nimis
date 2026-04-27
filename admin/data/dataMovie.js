@@ -44,8 +44,3 @@ DataMovie.getCategories = async function () {
 }
 
 export {DataMovie};
-
-
-
-
-
