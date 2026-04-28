@@ -91,3 +91,37 @@ function getMovieById($id){
     $res = $stmt->fetch(PDO::FETCH_OBJ);
     return $res; // Retourne les résultats
 }
+
+
+function getAllProfile(){
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    // Requête SQL pour récupérer le menu avec des paramètres
+    $sql = "SELECT id, name, image, age
+            FROM `SAE203_Profile`";
+    // Prépare la requête SQL
+    $stmt = $cnx->prepare($sql);
+    // Exécute la requête SQL
+    $stmt->execute();
+    // Récupère les résultats de la requête sous forme d'objets
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $res; // Retourne les résultats
+}
+
+function AddProfile($name, $image, $age){
+    try {
+        // Connexion à la base de données
+        $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME.";charset=utf8", DBLOGIN, DBPWD);
+        $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "INSERT INTO `SAE203_Profile` (name, image, age) VALUES (:name, :image, :age)";
+        $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':image', $image);
+        $stmt->bindParam(':age', $age);    
+        $stmt->execute();
+        return $stmt->rowCount();
+    } catch (PDOException $e) {
+        return false;
+    }
+}
