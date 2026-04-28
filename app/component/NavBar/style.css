@@ -7,6 +7,7 @@
   background-color: var(--color-bg);
 
   .navbar__item {
+    position: relative;
     --_offset: 0.2rem;
     padding: 0.5rem 1rem;
     text-decoration: underline;
@@ -16,6 +17,32 @@
     transition: text-underline-offset 0.2s ease-in-out;
     &:hover {
       --_offset: 0.5rem;
+    }
+  }
+}
+
+.navbar__list{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.dropdown__content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  flex-direction: column;
+  background-color: var(--color-gray-dark);
+  border: 1px solid var(--color-white);
+  padding: 0.5rem;
+  z-index: 1000;
+
+  .dropdown__item {
+    padding: 0.5rem;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--color-fg);
+      color: var(--color-bg);
     }
   }
 }

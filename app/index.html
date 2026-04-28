@@ -17,6 +17,7 @@
       import { Movie } from "./component/Movie/script.js";
       import { DataMovie } from "./data/dataMovie.js";
       import { MovieDetail } from "./component/MovieDetail/script.js";
+      import { MovieCategory } from "./component/MovieCategory/script.js";
     
 
       // Controleur
@@ -26,9 +27,10 @@
       
 
       C.handlerHome = async function () {
+        const categories = await DataMovie.readCategories();
         const movies = await DataMovie.requestMovies();
-        const contentHTML = await Movie.format(movies);
-        document.getElementById('content').innerHTML = contentHTML;
+        
+        await V.renderMovieCategory(categories, movies);
       };
       
       C.handlerDetail = async function (id) {
@@ -43,10 +45,18 @@
       //   );
       // };
 
-       C.handlerCategory = async function () {
+      // C'était pour l'itération 1
+      //  C.handlerCategory = async function () {
+      //   const movies = await DataMovie.requestMovies();
+      //   const contentHTML = await Movie.format(movies);
+      //   document.getElementById('content').innerHTML = contentHTML;
+      // };
+
+      C.handlerCategory = async function () {
+        const categories = await DataMovie.readCategories();
         const movies = await DataMovie.requestMovies();
-        const contentHTML = await Movie.format(movies);
-        document.getElementById('content').innerHTML = contentHTML;
+
+        await V.renderMovieCategory(categories, movies);
       };
 
       C.handlerMovie = async function () {
@@ -54,12 +64,21 @@
         await V.renderMovie(movies);
       };
 
-      C.start = function () {
-        V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerCategory()");
-        C.handlerMovie();
-       
+      C.handlerCategoryById = async function (id) {
+        const allMovies = await DataMovie.requestMovies();
+        const filtered = allMovies.filter(m => m.id_category == id);
+        
+        document.querySelector('.navbar__dropdown').open = false;
+        await V.renderMovie(filtered);
       };
 
+      C.start = async function () {
+        await V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerCategory()");
+        C.handlerCategory();
+       
+      };
+     
+      
       // Vue (contient tout ce qui est relatif à l'affichage)
       window.V = {};
 
@@ -70,20 +89,24 @@
        * Elle sélectionne l'élément HTML avec l'ID "header" et y insère le contenu
        * formaté par le composant NavBar.
        */
-      V.renderNavBar = function (hAbout, hHome, hCategory) {
+      V.renderNavBar = async function (hAbout, hHome, hCategory) {
+        const categories = await DataMovie.readCategories();
+
         let header = document.querySelector("#header");
-        header.innerHTML = NavBar.format(hAbout, hHome, hCategory);
+        header.innerHTML = NavBar.format(hAbout, hHome, hCategory, categories);
       };
 
       V.renderMovie =  async function (movies) {
         let content = document.querySelector("#content");
         content.innerHTML = await Movie.format(movies);
-      };  
+      }; 
+      
+      V.renderMovieCategory = async function (categories, movies) {
+        let content = document.querySelector("#content");
+        content.innerHTML = await MovieCategory.format(categories, movies);
+      };
 
-      //  V.renderMovie = function (hAbout) {
-      //   let content = document.querySelector("#content");
-      //   content.innerHTML = Movie.format(hAbout);
-      // };
+     
       
       C.start(); // Démarre l'application
     </script>

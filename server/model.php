@@ -23,7 +23,10 @@ function getAllMovies(){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
-    $sql = "select id, name, image from `SAE203_Movie` ";
+    $sql = "SELECT m.id, m.name, m.image,m.id_category, c.name AS category__name 
+            FROM `SAE203_Movie` m
+            JOIN `SAE203_Category` c ON m.id_category = c.id
+            ORDER BY c.name ASC";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
     // Exécute la requête SQL
@@ -61,7 +64,7 @@ function getAllCategories(){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
-    $sql = "select id, name from `SAE203_Category`";
+    $sql = "select id, name from `SAE203_Category` ORDER BY name ASC";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
     // Exécute la requête SQL
@@ -75,7 +78,7 @@ function getMovieById($id){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
-    $sql = "SELECT SAE203_Movie.*, SAE203_Category.name AS category_name
+    $sql = "SELECT SAE203_Movie.*, SAE203_Category.name AS category__name
             FROM SAE203_Movie 
             INNER JOIN SAE203_Category ON SAE203_Movie.id_category = SAE203_Category.id 
             WHERE SAE203_Movie.id = :id";

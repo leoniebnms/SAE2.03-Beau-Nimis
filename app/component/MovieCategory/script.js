@@ -1,30 +1,31 @@
+import { Movie } from "../Movie/script.js";
 
-// let Movie = {};
+let MovieCategory = {};
 
-// Movie.format =  async function (movies) {
+MovieCategory.format =  async function (categories, allmovies) {
 
+    let templateFile = await fetch("./component/MovieCategory/template.html");
+    let template = await templateFile.text();
 
-//   if (!movies || movies.length === 0) {
-//     let response = await fetch("./component/Movie/template-message.html");
-//     return await response.text();
-//   }
+    let categoriesHTML = "";
 
-//   let templateFile = await fetch("./component/Movie/template.html");
-//   let template = await templateFile.text();
+    for (let cat of categories) {
 
+      let moviescategory = allmovies.filter(movie => movie.id_category == cat.id);
 
-  
-//   let menuItems = "";
-//   for (let movie of movies) {
-//     let item = template;
+      if (moviescategory.length > 0) {
+            let item = template;
+            
+            item = item.replaceAll("{{category__name}}", cat.name);
+            
+            let moviesHTML = await Movie.format(moviescategory);
+            item = item.replace("{{movies}}", moviesHTML);
 
+            categoriesHTML += item;
+      }
+    }
 
-//     item = item.replace("{{image}}", movie.image);
-//     item = item.replaceAll("{{name}}", movie.name);
-//     item = item.replaceAll("{{id}}", movie.id);
-//     menuItems += item;
-//   }
-//   return menuItems;
-// }
+  return categoriesHTML;
+}
 
-// export { Movie };
+export { MovieCategory };
