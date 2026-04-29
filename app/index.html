@@ -29,9 +29,9 @@
 
       C.handlerHome = async function () {
         const categories = await DataMovie.readCategories();
-        const movies = await DataMovie.requestMovies();
-        
+        const movies = await DataMovie.requestMovies(window.C.currentAge);
         await V.renderMovieCategory(categories, movies);
+  
       };
       
       C.handlerDetail = async function (id) {
@@ -73,10 +73,14 @@
         await V.renderMovie(filtered);
       };
 
-      C.handlerProfile = async function (id) {
-        const profiles = await DataProfile.read();
+      window.C.currentAge = 0;
 
-        await V.renderProfile(profiles);
+      C.handlerProfile = async function (profileId) {
+          const profiles = await DataProfile.read();
+          const selected = profiles.find(p => p.id == profileId);
+
+          window.C.currentAge = selected ? selected.age : 0;
+          await C.handlerHome();
       };
 
       C.start = async function () {

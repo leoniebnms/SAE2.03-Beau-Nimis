@@ -22,7 +22,9 @@ require("model.php");
 
 
 function readMoviesController(){
-    $movies = getAllMovies();
+    $age = isset($_GET['age']) ? intval($_GET['age']) : 0;
+
+    $movies = getAllMovies($age);
     return $movies;
 }
 
