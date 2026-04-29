@@ -97,21 +97,10 @@ function readMovieDetailController(){
     return $movie;
 }
 
-function addProfileController(){
-  $name = isset($_POST['name']) ? $_POST['name'] : null;
-  $image = isset($_POST['image']) ? $_POST['image'] : null;
-  $age = isset($_POST['age']) ? $_POST['age'] : null;
 
-  if (empty($name) || $age === null || $age === "") {
-    return false;
-  }
-
-  $ok = AddProfile($name, $image, $age);
-
-  if ($ok > 0){
-    return ["message" => "L'utilisateur $name a été ajouté avec succès !"];
-  }
-  else{
-    return false;
-  }
+function readProfilesController(){
+    $Profiles = getProfiles();
+    return $Profiles;
 }
+
+

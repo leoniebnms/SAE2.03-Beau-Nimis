@@ -8,7 +8,14 @@
   </head>
 
   <body>
-    <header id="header"></header>
+
+    <div id="profile-container">
+      <h2>Qui est-ce ?</h2>
+      <div id="profile-list"></div>
+    </div>
+
+      
+    <header id="header"></header> 
 
     <section id="content"></section>
 
@@ -18,7 +25,29 @@
       import { DataMovie } from "./data/dataMovie.js";
       import { MovieDetail } from "./component/MovieDetail/script.js";
       import { MovieCategory } from "./component/MovieCategory/script.js";
+      import { DataProfile } from "./data/dataProfile.js";
     
+
+
+       window.onload = async function() {
+        const profils = await DataProfile.read();
+        const list = document.querySelector("#profile-list");
+        for (let i = 0; i < profils.length; i++) {
+          let p = profils[i];
+          const template = `
+            <div class="profile-card" onclick="selectProfile('${p.name}', ${p.age})">
+                <img src="client/img/${p.image}" alt="${p.name}" style="width:100px;">
+                <p>${p.name}</p>
+            </div>
+        `;
+          list.insertAdjacentHTML('beforeend', template);
+          }
+        };
+
+        window.selectProfile = function(name) {
+          alert("Tu as choisi le profil de : " + name);
+        };
+
 
       // Controleur
       // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
@@ -72,8 +101,14 @@
         await V.renderMovie(filtered);
       };
 
+      C.handlerProfile = async function () {
+        const Profile = await DataProfile.read();
+
+        await V.renderProfile();
+      };
+
       C.start = async function () {
-        await V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerCategory()");
+        await V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerCategory()", "C.handlerProfile()");
         C.handlerCategory();
        
       };
