@@ -123,3 +123,23 @@ function addProfileController(){
     return false;
   }
 }
+
+function updateProfileController(){
+  $id = isset($_POST['id']) ? $_POST['id'] : null;
+  $name = isset($_POST['name']) ? $_POST['name'] : null;
+  $image = isset($_POST['image']) ? $_POST['image'] : null;
+  $age = isset($_POST['age']) ? $_POST['age'] : null;
+
+  if (!$id || !$name || !$age) {
+    return false;
+  }
+
+  $ok = UpdateProfile($id, $name, $image, $age);
+
+  if ($ok){
+    return ["message" => "Le profil $name a été mis à jour avec succès !"];
+  }
+  else{
+    return false;
+  }
+}

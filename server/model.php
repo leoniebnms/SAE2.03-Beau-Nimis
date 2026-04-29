@@ -120,3 +120,22 @@ function AddProfile($name, $image, $age){
         return false;
     }
 }
+
+
+function UpdateProfile($id, $name, $image, $age){
+    try {
+        $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+        $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "UPDATE `SAE203_Profile` SET `name` = :name, `image` = :image, `age` = :age WHERE `id` = :id";
+        $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':image', $image);
+        $stmt->bindParam(':age', $age);
+        $stmt->execute();
+        return $stmt->rowCount();
+    } catch (PDOException $e) {
+        return false;
+    }
+}

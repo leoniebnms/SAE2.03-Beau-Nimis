@@ -7,13 +7,13 @@
 
 .addProfile__title {
     margin-bottom: 2rem;
-    color: var(--color-white);
-    text-transform: uppercase;
+    padding-left: 1rem;
     letter-spacing: 0.2rem;
+    text-transform: uppercase;
     font-weight: 300;
     font-size: 1.2rem;
     border-left: 3px solid var(--color-white);
-    padding-left: 1rem;
+    color: var(--color-white);
 }
 
 .addProfile__form {
@@ -24,19 +24,18 @@
 }
 
 
-.addProfile__form input {
-    background-color: transparent;
-    color: var(--color-white);
-    border: none;
-    border-bottom: 1px solid var(--color-gray); 
+.addProfile__form input { 
     margin-top: 1.2rem;
     padding: 0.5rem 0;
-   
+    border: none;
+    border-bottom: 1px solid var(--color-gray);
+    color: var(--color-white);
+    background-color: transparent; 
 }
 
 .addProfile__form input::placeholder {
-    color: var(--color-gray);
     font-weight: 300;
+    color: var(--color-gray);
 }
 
 .addProfile__form input[type=button] {
@@ -51,3 +50,53 @@
     border: 1px solid #fff;
     transition: all 0.3s ease;
 }
+
+
+.adminSection {
+    width: 30rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    color: var(--color-white);
+    background-color: var(--color-black);    
+}
+
+.adminSection__title {
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 1.2rem;
+    border-left: 3px solid var(--color-white);
+    color: var(--color-white);
+}
+
+.adminItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 0.5rem;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid var(--color-gray);
+}
+
+.adminItem__name,
+.adminItem__age{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-gray)
+}
+
+
+.adminItem__btn {
+    margin-top: 2.5rem;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    height: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+    border: 1px solid #fff;
+    transition: all 0.3s ease;
+} 

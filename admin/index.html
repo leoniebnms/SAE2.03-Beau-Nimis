@@ -30,7 +30,7 @@
       import { DataMovie } from "./data/dataMovie.js";
 
       import { ProfileForm } from "./component/ProfileForm/script.js";
-      import { DataProfile } from "./data/dataProfile.js";
+      import { DataProfile } from "../app/data/dataProfile.js";
 
       window.C = {};
       
@@ -70,11 +70,45 @@
         }
       };
 
+      C.handlerEditProfile = async function (profileId) {
+        const profiles = await DataProfile.read();
+        const p = profiles.find(p => p.id == profileId);
+
+        if (p) {
+          document.querySelector(".addProfile__form input[name='id']").value = p.id;
+          document.querySelector(".addProfile__form input[name='name']").value = p.name;
+          document.querySelector(".addProfile__form input[name='image']").value = p.image;
+          document.querySelector(".addProfile__form input[name='age']").value = p.age;
+          
+          document.querySelector(".addProfile__title").innerText = "Modifier le profil";
+          document.querySelector(".addProfile__form input[type='button']").onclick = C.handlerSaveProfile;
+        }
+      };
+
+      C.handlerSaveProfile = async function () {
+        let form = document.querySelector(".addProfile__form");
+
+        let fd = new FormData(form);
+        let res = await DataProfile.update(fd);
+
+        if(res && res.message) {
+          V.renderLog(res.message);
+        } else {
+          V.renderLog("Erreur: Impossible de modifier le profil.");
+        }
+      };
+
+      C.handlerHome = async function () {
+         const categories = await DataMovie.readCategories();
+         const movies = await DataMovie.requestMovies(window.C.currentAge);
+         await V.renderMovieCategory(categories, movies);
+      };
+
 
       C.start = async function () {
         V.renderLog("Démarrage de l'application");
 
-        V.renderProfile( "C.handlerAddProfile()");
+        await V.renderProfile( "C.handlerAddProfile()");
 
         try {
           let categories = await DataMovie.getCategories();
@@ -100,9 +134,16 @@
         content.innerHTML = MovieForm.format(handler, categories);
       };
 
-      V.renderProfile = function (handler) {
+      V.renderProfile = async function (handler) {
         let content = document.querySelector("#addProfile");
-        content.innerHTML = ProfileForm.format(handler);
+        try {
+          let profiles = await DataProfile.read();       
+          content.innerHTML = ProfileForm.format(handler) + ProfileForm.formatList(profiles);
+        } catch (e) {
+          console.error("Erreur lors de la lecture des profils : ", e);
+          content.innerHTML = ProfileForm.format(handler);
+        }
+        
       };
 
       C.start();
