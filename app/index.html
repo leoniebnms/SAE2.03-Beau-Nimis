@@ -8,13 +8,6 @@
   </head>
 
   <body>
-
-    <div id="profile-container">
-      <h2>Qui est-ce ?</h2>
-      <div id="profile-list"></div>
-    </div>
-
-      
     <header id="header"></header> 
 
     <section id="content"></section>
@@ -26,27 +19,6 @@
       import { MovieDetail } from "./component/MovieDetail/script.js";
       import { MovieCategory } from "./component/MovieCategory/script.js";
       import { DataProfile } from "./data/dataProfile.js";
-    
-
-
-       window.onload = async function() {
-        const profils = await DataProfile.read();
-        const list = document.querySelector("#profile-list");
-        for (let i = 0; i < profils.length; i++) {
-          let p = profils[i];
-          const template = `
-            <div class="profile-card" onclick="selectProfile('${p.name}', ${p.age})">
-                <img src="client/img/${p.image}" alt="${p.name}" style="width:100px;">
-                <p>${p.name}</p>
-            </div>
-        `;
-          list.insertAdjacentHTML('beforeend', template);
-          }
-        };
-
-        window.selectProfile = function(name) {
-          alert("Tu as choisi le profil de : " + name);
-        };
 
 
       // Controleur
@@ -101,15 +73,16 @@
         await V.renderMovie(filtered);
       };
 
-      C.handlerProfile = async function () {
-        const Profile = await DataProfile.read();
+      C.handlerProfile = async function (id) {
+        const profiles = await DataProfile.read();
 
-        await V.renderProfile();
+        await V.renderProfile(profiles);
       };
 
       C.start = async function () {
-        await V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerCategory()", "C.handlerProfile()");
-        C.handlerCategory();
+        await V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerProfile()");
+
+        await C.handlerHome();
        
       };
      
@@ -124,11 +97,9 @@
        * Elle sélectionne l'élément HTML avec l'ID "header" et y insère le contenu
        * formaté par le composant NavBar.
        */
-      V.renderNavBar = async function (hAbout, hHome, hCategory) {
-        const categories = await DataMovie.readCategories();
-
+      V.renderNavBar = async function (hAbout, hHome, hProfile) {
         let header = document.querySelector("#header");
-        header.innerHTML = NavBar.format(hAbout, hHome, hCategory, categories);
+        header.innerHTML = await NavBar.format(hAbout, hHome, hProfile);
       };
 
       V.renderMovie =  async function (movies) {
@@ -141,10 +112,16 @@
         content.innerHTML = await MovieCategory.format(categories, movies);
       };
 
+      V.renderProfile =  async function (profiles) {
+        let content = document.querySelector("#content");
+        // content.innerHTML = await MovieCategory.format(profiles);
+      }; 
+      
+
      
       
       C.start(); // Démarre l'application
     </script>
   </body>
 </html>
-<script type="module"></script>
+

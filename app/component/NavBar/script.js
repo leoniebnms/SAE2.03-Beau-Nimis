@@ -1,25 +1,22 @@
+import { DataProfile } from '../../data/dataProfile.js';
+
 let templateFile = await fetch("./component/NavBar/template.html");
 let template = await templateFile.text();
 
+
 let NavBar = {};
 
-NavBar.format = function (hAbout, hHome, hCategory, categories=[], hProfile) {
+NavBar.format = async function (hAbout, hHome) {
   let html = template;
+
+  const profiles = await DataProfile.read();
+
 
   // html = html.replace("{{hAbout}}", hAbout);
   html = html.replace("{{hHome}}", hHome);
-  html = html.replace("{{hCategory}}", hCategory);
-  html = html.replace("{{hProfile}}", hProfile);
-  
 
-  // let listHTML = categories.map(cat => `
-  //   <li class="dropdown__item" onclick="C.handlerCategoryById(${cat.id})">
-  //     ${cat.name}
-  //   </li>
-  // `).join('');
-
-  // html = html.replace('<ul class="dropdown__content" id="nav__categories--list"></ul>', 
-  //                     `<ul class="dropdown__content" id="nav__categories--list">${listHTML}</ul>`);
+  let optionsHtml = profiles.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+    html = html.replace('{{profile_options}}', optionsHtml);
 
   
   return html;

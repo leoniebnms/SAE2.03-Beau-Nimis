@@ -2,7 +2,11 @@
   <ul class="navbar__list">
     <li class="navbar__item" onclick="{{hHome}}">Films</li>
 
-    
+    <select class="navbar__profile" name="id_profile" id="profile" onchange="C.handlerProfile(this.value)">
+        <option value=""> Choisir un profil </option>
+            {{profile_options}}
+    </select>
+
   </ul>
 </nav>
 

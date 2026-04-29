@@ -101,3 +101,20 @@ function getProfiles(){
     $res = $stmt->fetchAll(PDO::FETCH_OBJ);
     return $res; 
 }
+
+function AddProfile($name, $image, $age){
+    try {
+        $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+        $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "INSERT INTO `SAE203_Profile` (`name`, `image`, `age`) VALUES (:name, :image, :age)";
+        $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':image', $image);
+        $stmt->bindParam(':age', $age);
+        $stmt->execute();
+        return $stmt->rowCount();
+    } catch (PDOException $e) {
+        return false;
+    }
+}

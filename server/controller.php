@@ -103,4 +103,21 @@ function readProfilesController(){
     return $Profiles;
 }
 
+function addProfileController(){
+  $name = isset($_POST['name']) ? $_POST['name'] : null;
+  $image = isset($_POST['image']) ? $_POST['image'] : null;
+  $age = isset($_POST['age']) ? $_POST['age'] : null;
 
+  if (!$name || !$age) {
+    return false;
+  }
+
+  $ok = AddProfile($name, $image, $age);
+
+  if ($ok!=0){
+    return ["message" => "Le profil $name a été ajouté avec succès !"];
+  }
+  else{
+    return false;
+  }
+}
