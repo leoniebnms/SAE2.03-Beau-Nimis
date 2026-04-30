@@ -13,10 +13,15 @@
  * DBLOGIN : Nom d'utilisateur pour se connecter à la base de données.
  * DBPWD : Mot de passe pour se connecter à la base de données.
  */
+// define("HOST", "localhost");
+// define("DBNAME", "beaunimis1");
+// define("DBLOGIN", "beaunimis1");
+// define("DBPWD", "beaunimis1");
+
 define("HOST", "localhost");
-define("DBNAME", "beaunimis1");
-define("DBLOGIN", "beaunimis1");
-define("DBPWD", "beaunimis1");
+define("DBNAME", "SAE203");
+define("DBLOGIN", "usersae203");
+define("DBPWD", "sae203NieBeau2512");
 
 
 function getAllMovies($age = 0){
@@ -135,6 +140,74 @@ function UpdateProfile($id, $name, $image, $age){
         $stmt->bindParam(':age', $age);
         $stmt->execute();
         return $stmt->rowCount();
+    } catch (PDOException $e) {
+        return false;
+    }
+}
+
+function addFavorite($id_profile, $id_movie){
+    try {
+        $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+        $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "INSERT INTO `SAE203_Favorite` (`id_profile`, `id_movie`) VALUES (:id_profile, :id_movie)";
+        $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':id_profile', $id_profile);
+        $stmt->bindParam(':id_movie', $id_movie);
+        $stmt->execute();
+        return $stmt->rowCount();
+    } catch (PDOException $e) {
+        return false;
+    }
+}
+
+function getFavorite($id_profile){
+    try{
+        $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+        $sql = "SELECT m.id, m.name, m.image, m.id_category, c.name AS category__name 
+            FROM `SAE203_Favorite` f
+            JOIN `SAE203_Movie` m ON f.id_movie = m.id
+            JOIN `SAE203_Category` c ON m.id_category = c.id
+            WHERE f.id_profile = :id_profile";
+        $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':id_profile', $id_profile);
+        $stmt->execute();
+        $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $res; 
+    } 
+    catch (PDOException $e) {
+        return false;
+    }
+}
+
+function readFavorites($id_profile){
+    try {
+        $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+        $sql = "SELECT m.* FROM SAE203_Movie m 
+            JOIN SAE203_Favorite f ON m.id = f.id_movie 
+            WHERE f.id_profile = :id_profile";
+        $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':id_profile', $id_profile);
+        $stmt->execute();
+        $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $res; 
+    } 
+    catch (PDOException $e) {
+        return false;
+    }
+    
+}
+
+function removeFavorite($id_profile, $id_movie) {
+    try {
+        $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+        $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);        
+        $sql = "DELETE FROM `SAE203_Favorite` WHERE `id_profile` = :id_profile AND `id_movie` = :id_movie";
+        $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':id_profile', $id_profile);
+        $stmt->bindParam(':id_movie', $id_movie);
+        $stmt->execute();
+        return ($stmt->rowCount() > 0);
     } catch (PDOException $e) {
         return false;
     }

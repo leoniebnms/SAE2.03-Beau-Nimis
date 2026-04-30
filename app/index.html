@@ -19,6 +19,7 @@
       import { MovieDetail } from "./component/MovieDetail/script.js";
       import { MovieCategory } from "./component/MovieCategory/script.js";
       import { DataProfile } from "./data/dataProfile.js";
+      import { DataFavorite } from "./data/dataFavorite.js";
 
 
       // Controleur
@@ -36,9 +37,18 @@
       
       C.handlerDetail = async function (id) {
         const movie = await DataMovie.requestMovieDetails(id);
-        const detailHTML = await MovieDetail.format(movie);
+        const id_profile = window.C.currentProfileId;
+
+        let isFavorite = false;
+        if (id_profile) {
+            const favorites = await DataFavorite.read(id_profile);
+            isFavorite = favorites.some(fav => fav.id == id);
+        }
+
+        const detailHTML = await MovieDetail.format(movie, isFavorite);
         document.getElementById('content').innerHTML = detailHTML;
       };
+
 
       // C.handlerAbout = function () {
       //   alert(
@@ -79,12 +89,61 @@
           const profiles = await DataProfile.read();
           const selected = profiles.find(p => p.id == profileId);
 
+          window.C.currentProfileId = profileId;
+
           window.C.currentAge = selected ? selected.age : 0;
           await C.handlerHome();
       };
 
+      C.handlerFavorite = async function (id_movie) {
+        let id_profile = window.C.currentProfileId;
+
+        if (!id_profile) {
+          alert("Veuillez sélectionner un profil avant d'ajouter un film aux favoris.");
+          return;
+        }
+
+        let res = await DataFavorite.add(id_profile, id_movie);
+
+        if (res && res.message) {
+          alert(res.message);
+        } else {
+          alert("Film ajouté aux favoris !");
+        }
+      }
+
+      C.handlerShowFavorites = async function () {
+        let id_profile = window.C.currentProfileId;
+
+        if (!id_profile) {
+          alert("Connectez-vous à un profil pour voir vos favoris.");
+          return;
+        }
+
+        const favorites = await DataFavorite.read(id_profile);
+
+        if (favorites && favorites.length > 0 ){
+          await V.renderMovie(favorites);
+        } else {
+          document.querySelector("#content").innerHTML = "<h2>Votre liste est vide.</h2>";
+        }
+      };
+
+      C.handlerRemoveFavorite = async function(id_movie){
+        let id_profile = window.C.currentProfileId;
+        let res = await DataFavorite.remove(id_profile, id_movie);
+
+        if (res) {
+          if (document.querySelector(".movie-container")){
+            await C.handlerShowFavorites();
+          } else {
+            await C.handlerDetail(id_movie);
+          }
+        }
+      };
+      
       C.start = async function () {
-        await V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerProfile()");
+        await V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerProfile()", "C.handlerShowFavorites()");
 
         await C.handlerHome();
        
@@ -101,9 +160,9 @@
        * Elle sélectionne l'élément HTML avec l'ID "header" et y insère le contenu
        * formaté par le composant NavBar.
        */
-      V.renderNavBar = async function (hAbout, hHome, hProfile) {
+      V.renderNavBar = async function (hAbout, hHome, hProfile, hFav) {
         let header = document.querySelector("#header");
-        header.innerHTML = await NavBar.format(hAbout, hHome, hProfile);
+        header.innerHTML = await NavBar.format(hAbout, hHome, hProfile, hFav);
       };
 
       V.renderMovie =  async function (movies) {
