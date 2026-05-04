@@ -183,3 +183,8 @@ function removeFavoriteController() {
 
     return removeFavorite($id_profile, $id_movie);
 }
+
+function readFeaturedMoviesController(){
+  $featuredMovies = getFeaturedMovies();
+  return $featuredMovies;
+}

@@ -20,6 +20,8 @@
       import { MovieCategory } from "./component/MovieCategory/script.js";
       import { DataProfile } from "./data/dataProfile.js";
       import { DataFavorite } from "./data/dataFavorite.js";
+      import { MovieFeatured } from "./component/MovieFeatured/script.js";
+      import { DataFeatured } from "./data/dataFeatured.js";
 
 
       // Controleur
@@ -29,10 +31,16 @@
       
 
       C.handlerHome = async function () {
+        const content = document.getElementById('content');
+
+        const featuredMovies = await DataFeatured.read();
         const categories = await DataMovie.readCategories();
         const movies = await DataMovie.requestMovies(window.C.currentAge);
-        await V.renderMovieCategory(categories, movies);
-  
+        
+        const featuredHTML = await MovieFeatured.format(featuredMovies);
+        const categoriesHTML = await MovieCategory.format(categories, movies);
+
+        content.innerHTML = featuredHTML + categoriesHTML;
       };
       
       C.handlerDetail = async function (id) {

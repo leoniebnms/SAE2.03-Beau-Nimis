@@ -212,3 +212,12 @@ function removeFavorite($id_profile, $id_movie) {
         return false;
     }
 }
+
+function getFeaturedMovies(){
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    $sql = "SELECT * FROM `SAE203_Movie` WHERE featured = 1";
+    $stmt = $cnx->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $res; 
+}
