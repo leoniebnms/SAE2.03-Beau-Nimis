@@ -71,7 +71,7 @@ function getAllCategories(){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
-    $sql = "select id, name from `SAE203_Category` ORDER BY name ASC";
+    $sql = "SELECT id, name from `SAE203_Category` ORDER BY name ASC";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
     // Exécute la requête SQL
@@ -100,15 +100,6 @@ function getMovieById($id){
 }
 
 
-function getProfiles(){
-    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
-    $sql = "SELECT id, name, image, age FROM `SAE203_Profile`";
-    $stmt = $cnx->prepare($sql);
-    $stmt->execute();
-    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
-    return $res; 
-}
-
 function AddProfile($name, $image, $age){
     try {
         $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
@@ -126,6 +117,15 @@ function AddProfile($name, $image, $age){
     }
 }
 
+
+function getProfiles(){
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    $sql = "SELECT id, name, image, age FROM `SAE203_Profile`";
+    $stmt = $cnx->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $res; 
+}
 
 function UpdateProfile($id, $name, $image, $age){
     try {
