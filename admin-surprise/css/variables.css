@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Text:ital@0;1&family=MonteCarlo&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik+Dirt&display=swap');
+:root {
+  --ff-sans: "Roboto", sans-serif;;
+
+  --color-green: hsl(159, 100%, 55%);
+  --color-green-light: hsl(169, 100%, 55%);
+  --color-black-blue: hsl(222, 23%, 9%);
+  --color-black: hsl(0, 0%, 6%);
+  --color-gray-dark: #1a1a1a;
+  --color-gray-light: #999999;
+  --color-gray: #33363d;
+  --color-white: hsl(0, 0%, 100%);
+  
+
+  /* Sementic Tokens */
+  --color-title: var(--color-white);
+  --color-bg: var(--color-black-blue);
+  --color-bg-form: var(--color-black);
+  --color-border: var(--color-gray-light);
+  --color-btn: var(--color-green);
+  --color-btn-hover: var(--color-green-light);
+  --color-text-btn: var(--color-black);
+}

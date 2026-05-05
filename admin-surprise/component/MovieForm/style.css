@@ -1,0 +1,59 @@
+.addMovie {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4rem 2rem;
+    border-bottom: 0.5px solid var(--color-gray);
+    font-family: var(--ff-sans);
+    color: var(--color-title);
+    background-color: var(--color-bg); 
+}
+
+.addMovie__title {
+    margin-bottom: 2.5rem;
+    font-weight: 800;
+    font-size: 2.5rem; 
+}
+
+.addMovie__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 30rem;
+    gap: 1.5rem;
+}
+
+.addMovie__form select,
+.addMovie__form input,
+.addMovie__form textarea {
+    padding: 0.85rem 1rem;
+    border: 0.1rem solid var(--color-border);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    color: var(--color-border);
+    background-color: var(--color-bg-form);  
+}
+
+.addMovie__form input::placeholder, 
+.addMovie__form textarea::placeholder {
+    color: var(--color-border);
+    font-weight: 300;
+}
+
+.addMovie__form input[type=button] {
+    width: fit-content;
+    height: 3rem;
+    margin-top: 1rem;
+    padding: 0 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02rem;
+    font-size: 0.85rem;
+    font-weight:900;
+    color: var(--color-text-btn);
+    background-color: var(--color-btn);
+    cursor: pointer;
+}
+
+.addMovie__form input[type=button]:hover {
+    background-color: var(--color-btn-hover);
+}

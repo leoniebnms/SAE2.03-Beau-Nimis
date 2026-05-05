@@ -1,0 +1,20 @@
+#content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.category__title{
+  font-size: 1.5rem;
+  color: var(--color-white);
+  margin-bottom: 15px;
+  border-left: 5px solid var(--color-gray);
+  padding-left: 10px;
+}
+
+.movies__container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+

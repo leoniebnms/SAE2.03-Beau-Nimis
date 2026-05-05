@@ -1,0 +1,116 @@
+.addProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4rem 2rem;
+    border-bottom: 0.5px solid var(--color-gray);
+    font-family: var(--ff-sans);
+    color: var(--color-title);
+    background-color: var(--color-bg); 
+    
+}
+
+.addProfile__title {
+    margin-bottom: 2.5rem;
+    font-weight: 800;
+    font-size: 2.5rem; 
+}
+
+.addProfile__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 30rem;
+    gap: 1.5rem;
+}
+
+
+.addProfile__form input { 
+    padding: 0.85rem 1rem;
+    border: 0.1rem solid var(--color-border);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    color: var(--color-border);
+    background-color: var(--color-bg-form);
+}
+
+.addProfile__form input::placeholder {
+    color: var(--color-border);
+    font-weight: 300;
+}
+
+.addProfile__form input[type=button] {
+    width: fit-content;
+    height: 3rem;
+    margin-top: 1rem;
+    padding: 0 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02rem;
+    font-size: 0.85rem;
+    font-weight:900;
+    color: var(--color-text-btn);
+    background-color: var(--color-btn);
+    cursor: pointer;
+}
+
+.addProfile__form input[type=button]:hover {
+    background-color: var(--color-btn-hover);
+}
+
+
+.adminSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4rem 2rem;
+    font-family: var(--ff-sans);
+    color: var(--color-title);
+    background-color: var(--color-bg);    
+}
+
+.adminSection__title {
+    margin-bottom: 2.5rem;
+    font-weight: 800;
+    font-size: 2.5rem; 
+}
+
+.adminSection__list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 30rem;
+    gap: 1rem;
+}
+
+.adminItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 30rem;
+    padding: 0.85rem 1rem;
+    gap: 7rem;
+    border: 0.1rem solid var(--color-border);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    color: var(--color-border);
+    background-color: var(--color-bg-form);
+}
+
+.adminItem__btn {
+    width: fit-content;
+    height: 3rem;
+    padding: 0 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02rem;
+    font-size: 0.85rem;
+    font-weight:900;
+    color: var(--color-text-btn);
+    background-color: var(--color-btn);
+    cursor: pointer;
+} 
+
+.adminItem__btn:hover {
+    background-color: var(--color-btn-hover);
+}

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>SAE2.03 APP</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/base.css" />
+  </head>
+
+  <body>
+    <header id="header"></header> 
+
+    <section id="content"></section>
+
+    <script type="module">
+      import { NavBar } from "./component/NavBar/script.js";
+      import { Movie } from "./component/Movie/script.js";
+      import { DataMovie } from "./data/dataMovie.js";
+      import { MovieDetail } from "./component/MovieDetail/script.js";
+      import { MovieCategory } from "./component/MovieCategory/script.js";
+      import { DataProfile } from "./data/dataProfile.js";
+      import { DataFavorite } from "./data/dataFavorite.js";
+      import { MovieFeatured } from "./component/MovieFeatured/script.js";
+      import { DataFeatured } from "./data/dataFeatured.js";
+
+
+      // Controleur
+      // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
+      // Une fois l'application terminée, on pourrait remettre let C.
+      window.C = {};
+      
+
+      C.handlerHome = async function () {
+        const content = document.getElementById('content');
+
+        const featuredMovies = await DataFeatured.read();
+        const categories = await DataMovie.readCategories();
+        const movies = await DataMovie.requestMovies(window.C.currentAge);
+        
+        const featuredHTML = await MovieFeatured.format(featuredMovies);
+        const categoriesHTML = await MovieCategory.format(categories, movies);
+
+        content.innerHTML = featuredHTML + categoriesHTML;
+      };
+      
+      C.handlerDetail = async function (id) {
+        const movie = await DataMovie.requestMovieDetails(id);
+        const id_profile = window.C.currentProfileId;
+
+        let isFavorite = false;
+        if (id_profile) {
+            const favorites = await DataFavorite.read(id_profile);
+            isFavorite = favorites.some(fav => fav.id == id);
+        }
+
+        const detailHTML = await MovieDetail.format(movie, isFavorite);
+        document.getElementById('content').innerHTML = detailHTML;
+      };
+
+
+      // C.handlerAbout = function () {
+      //   alert(
+      //     "Ceci est une base de projet pour la SAE2.03 édition 2025. Bonne chance !"
+      //   );
+      // };
+
+      // C'était pour l'itération 1
+      //  C.handlerCategory = async function () {
+      //   const movies = await DataMovie.requestMovies();
+      //   const contentHTML = await Movie.format(movies);
+      //   document.getElementById('content').innerHTML = contentHTML;
+      // };
+
+      C.handlerCategory = async function () {
+        const categories = await DataMovie.readCategories();
+        const movies = await DataMovie.requestMovies();
+
+        await V.renderMovieCategory(categories, movies);
+      };
+
+      C.handlerMovie = async function () {
+        const movies = await DataMovie.requestMovies();
+        await V.renderMovie(movies);
+      };
+
+      C.handlerCategoryById = async function (id) {
+        const allMovies = await DataMovie.requestMovies();
+        const filtered = allMovies.filter(m => m.id_category == id);
+        
+        document.querySelector('.navbar__dropdown').open = false;
+        await V.renderMovie(filtered);
+      };
+
+      window.C.currentAge = 0;
+
+      C.handlerProfile = async function (profileId) {
+          const profiles = await DataProfile.read();
+          const selected = profiles.find(p => p.id == profileId);
+
+          window.C.currentProfileId = profileId;
+
+          window.C.currentAge = selected ? selected.age : 0;
+          await C.handlerHome();
+      };
+
+      C.handlerFavorite = async function (id_movie) {
+        let id_profile = window.C.currentProfileId;
+
+        if (!id_profile) {
+          alert("Veuillez sélectionner un profil avant d'ajouter un film aux favoris.");
+          return;
+        }
+
+        let res = await DataFavorite.add(id_profile, id_movie);
+
+        if (res && res.message) {
+          alert(res.message);
+        } else {
+          alert("Film ajouté aux favoris !");
+        }
+      }
+
+      C.handlerShowFavorites = async function () {
+        let id_profile = window.C.currentProfileId;
+
+        if (!id_profile) {
+          alert("Connectez-vous à un profil pour voir vos favoris.");
+          return;
+        }
+
+        const favorites = await DataFavorite.read(id_profile);
+
+        if (favorites && favorites.length > 0 ){
+          await V.renderMovie(favorites);
+        } else {
+          document.querySelector("#content").innerHTML = "<h2>Votre liste est vide.</h2>";
+        }
+      };
+
+      C.handlerRemoveFavorite = async function(id_movie){
+        let id_profile = window.C.currentProfileId;
+        let res = await DataFavorite.remove(id_profile, id_movie);
+
+        if (res) {
+          if (document.querySelector(".movie-container")){
+            await C.handlerShowFavorites();
+          } else {
+            await C.handlerDetail(id_movie);
+          }
+        }
+      };
+      
+      C.start = async function () {
+        await V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerProfile()", "C.handlerShowFavorites()");
+
+        await C.handlerHome();
+       
+      };
+     
+      
+      // Vue (contient tout ce qui est relatif à l'affichage)
+      window.V = {};
+
+      /**
+       * V.renderNavBar
+       *
+       * Cette fonction est responsable de l'affichage de la barre de navigation (NavBar).
+       * Elle sélectionne l'élément HTML avec l'ID "header" et y insère le contenu
+       * formaté par le composant NavBar.
+       */
+      V.renderNavBar = async function (hAbout, hHome, hProfile, hFav) {
+        let header = document.querySelector("#header");
+        header.innerHTML = await NavBar.format(hAbout, hHome, hProfile, hFav);
+      };
+
+      V.renderMovie =  async function (movies) {
+        let content = document.querySelector("#content");
+        content.innerHTML = await Movie.format(movies);
+      }; 
+      
+      V.renderMovieCategory = async function (categories, movies) {
+        let content = document.querySelector("#content");
+        content.innerHTML = await MovieCategory.format(categories, movies);
+      };
+
+      V.renderProfile =  async function (profiles) {
+        let content = document.querySelector("#content");
+        // content.innerHTML = await MovieCategory.format(profiles);
+      }; 
+      
+
+     
+      
+      C.start(); // Démarre l'application
+    </script>
+  </body>
+</html>
+

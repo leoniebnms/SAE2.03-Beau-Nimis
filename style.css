@@ -36,13 +36,14 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 1.25rem;
-    
+    gap: 1.25rem; 
 }
 
 .btn__app,
 .btn__admin,
-.btn__goaccess {
+.btn__goaccess,
+.btn__app--surprise,
+.btn__admin--surprise {
     text-align: center;
     padding: 1.25rem;
     letter-spacing: 0.10rem;
