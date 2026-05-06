@@ -1,0 +1,103 @@
+@layer reset, base;
+
+/* -- Pour un élément HTML ------------------------------------- */
+.square {
+  aspect-ratio: 1;
+  background: rgba(224, 74, 74, 0.7);
+
+  /* ➩ Testez une rotation et un changement d'origine */
+  /* Par défaut, l'origine d'une transformation est center. */
+  /* rotate: 45deg; */
+  /* transform-origin: 0 0; */
+
+  /* ➩ Testez l'animation */
+  /* animation: spin 2s linear infinite; */
+}
+
+/* -- Pour un élément SVG ------------------------------------- */
+
+/* - SVG est ici un élément de type HTML*/
+.svg {
+  overflow: visible;
+  /* ➩ Testez l'animation sur l'élément SVG
+  Quel est l'origine de la transformation ? */
+  /* animation: spin 3s infinite linear; */
+}
+
+/* - SVG rect */
+.svg__square {
+  fill: rgba(94, 74, 224, 0.7);
+  /* ➩ Testez une rotation et un changement d'origine */
+  /* Par défaut, l'origine d'une transformation est (0,0). */
+  /* transform: rotate(45deg); */
+
+  /* transform-origin: 16px 16px */
+  /* ➩ Testez l'animation sur l'élément SVG */
+  /* animation: spin 2s linear infinite;
+  transform-origin: 50% 50%; */
+}
+
+/* SVG line */
+.svg__line {
+  /* ➩ Testez une rotation et un changement d'origine */
+  /* Par défaut, l'origine d'une transformation est (0,0). */
+  /* Attention ici transform-origin: 50% 50% fait réf au svg et non à l'élément line  */
+  /* testez avec une origine au point (16,10) */
+  /* transform-origin: 10px 16px;
+  animation: spin 2s linear infinite; */
+
+  /* ➩ Testez l'animation sur l'élément SVG */
+}
+.svg__line2 {
+  /* ➩ Testez une rotation et un changement d'origine */
+  /* Avec transform-box: fill-box, l'origine d'une transformation est le centre de la forme. */
+  /* transform-box: fill-box;
+  transform-origin: center;
+  animation: spin 2s linear infinite; */
+
+  /* ➩ Testez l'animation sur l'élément SVG */
+}
+
+@import "reset.css" layer reset;
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
+  h2 {
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  .page {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4rem;
+    font-family: sans-serif;
+    background: rgb(124, 141, 162);
+  }
+
+  .main {
+    display: flex;
+    gap: 4rem;
+  }
+
+  .container {
+    position: relative;
+    width: 12rem;
+    height: 12rem;
+    border: black dashed 2px;
+  }
+
+  /* Animation spin */
+  @keyframes spin {
+    100% {
+      rotate: 360deg;
+    }
+  }
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Hamburger full CSS v Rect</title>
+    <link rel="stylesheet" href="css/base.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Création d'une chekbox avec un id permettant de la relier au label -->
+      <input type="checkbox" id="toggle" />
+      <!-- Création d'un label avec un attribut for le reliant au checkbox -->
+      <label for="toggle" class="burger">
+        <!-- Création d'un svg avec 3 lignes -->
+        <svg viewBox="0 0 32 32" width="64" height="64" class="burger__svg">
+          <rect
+            class="burger__line"
+            x="2"
+            y="6"
+            width="28"
+            height="3"
+            rx="2"
+          ></rect>
+          <rect
+            class="burger__line"
+            x="2"
+            y="15"
+            width="28"
+            height="3"
+            rx="2"
+          ></rect>
+          <rect
+            class="burger__line"
+            x="2"
+            y="24"
+            width="28"
+            height="3"
+            rx="2"
+          ></rect>
+        </svg>
+        <!-- Création d'un span avec une classe sr-only pour le référencement -->
+        <span class="sr-only">Btn afficher ou pas le menu</span>
+      </label>
+      <!-- Création d'une div que l'on va manipuler avec la checkbox -->
+      <nav class="main-nav">
+        <ul class="main-nav__list">
+          <li class="main-nav__item">
+            <a href="" class="main-nav__link">Home</a>
+          </li>
+          <li class="main-nav__item">
+            <a href="" class="main-nav__link">New</a>
+          </li>
+          <li class="main-nav__item">
+            <a href="" class="main-nav__link">Popular</a>
+          </li>
+          <li class="main-nav__item">
+            <a href="" class="main-nav__link">Trending</a>
+          </li>
+          <li class="main-nav__item">
+            <a href="" class="main-nav__link">Categories</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </body>
+</html>

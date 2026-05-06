@@ -5,7 +5,8 @@
   
   --ff-sans: "DM sans", sans-serif;
 
-  --color-green: hsl(169, 53%, 51%);
+  --color-green: hsl(159, 100%, 55%);
+  --color-green-light: hsl(169, 100%, 55%);
   --color-black-blue: hsl(222, 23%, 9%);
   --color-black: hsl(0, 0%, 6%);
   --color-gray-dark: hsl(0, 0%, 10%);
@@ -17,4 +18,6 @@
   --color-title: var(--color-white);
   --color-bg: var(--color-black-blue);
   --color-hover: var(--color-green);
+  --color-btn: var(--color-green);
+  --color-btn-hover: var(--color-green-light);
 }

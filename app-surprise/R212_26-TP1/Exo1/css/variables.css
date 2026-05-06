@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=DM+Serif+Text:ital@0;1&family=MonteCarlo&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap");
+
+:root {
+  --clr-primary-400: hsl(263 55% 52%);
+  --clr-primary-800: hsl(262, 32%, 64%);
+  --clr-secondary-alpha: hsla(217, 19%, 35%, 0.25);
+  --clr-secondary-400: hsl(217 19% 35%);
+  --clr-secondary-500: hsl(219 29% 14%);
+  --clr-neutral-100: hsl(0 0% 100%);
+  --clr-neutral-200: hsl(210 46% 95%);
+  --clr-neutral-300: hsl(0 0% 81%);
+  --clr-dark: hsl(0, 0%, 0%);
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-neutral-400: hsl(0, 0%, 58%);
+
+  --ff-primary: "Barlow Semi Condensed", sans-serif;
+}

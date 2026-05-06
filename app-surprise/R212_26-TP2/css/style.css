@@ -1,0 +1,288 @@
+/* Load local Outfit variable font via @font-face */
+@font-face {
+  font-family: "Outfit";
+  src: url("assets/fonts/Outfit-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Primitive token colors */
+  --red: hsl(0 97% 63%);
+  --dark-blue: hsl(223 30% 9%);
+  --semi-dark-blue: hsl(223 36% 14%);
+  --grey: hsl(223 23% 46%);
+  --white: hsl(0 0% 100%);
+
+  /* Font sizes */
+  --font-size-xs: 0.81rem;
+  --font-size-sm: 0.93rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+
+  /* Semantic Tokens */
+  --font-primary: "Outfit", sans-serif;
+
+  --color-accent: var(--red);
+  --color-text: var(--white);
+  --color-text-secondary: var(--grey);
+  --color-background: var(--dark-blue);
+}
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin-block: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  padding-inline-start: 0;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+figure {
+  margin: 0;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* Baseline styles */
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 4rem;
+}
+
+/* Classe Utilitaires */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.component__title {
+  font-size: var(--font-size-xl);
+  font-weight: lighter;
+  margin-bottom: 2rem;
+}
+
+/* Composant 1 ICON */
+
+.icon {
+  --_icon-taille: 2rem;
+  width: var(--_icon-taille);
+  height: var(--_icon-taille);
+  color: currentColor;
+
+  &.icon--logo {
+    --_icon-taille: 4rem;
+  }
+  &.icon--movie {
+    --_icon-taille: 1.1rem;
+  }
+}
+
+/* .icon {
+}
+.icon .icon__title {
+}
+.icon.icon--red {
+}
+.icon:hover {
+} */
+
+/* Composant 2 HEADER */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  background-color: var(--semi-dark-blue);
+
+  .header__logo {
+    color: var(--color-accent);
+    &:hover {
+      color: var(--color-text-secondary);
+    }
+  }
+
+  .header__nav-list {
+    display: flex;
+    gap: 2rem;
+    color: var(--color-text-secondary);
+  }
+
+  .header__nav-link {
+    color: var(--color-text-secondary);
+    &:hover {
+      color: var(--color-accent);
+    }
+    &.header__nav-link--active {
+      color: var(--color-text);
+      font-weight: bold;
+    }
+  }
+}
+
+.avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: solid 2px var(--color-accent);
+}
+.search {
+  .search__txt {
+    color: var(--clr--white);
+    background-color: transparent;
+  }
+}
+
+.card {
+  .card__img {
+    border-radius: 0.5rem;
+  }
+  .card__items {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    opacity: 60%;
+  }
+
+  &.card--absolute {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    .card__img {
+      grid-row: 1/1;
+      grid-column: 1/1;
+    }
+    .card__desc {
+      align-self: end;
+      padding: 0.5rem;
+      grid-row: 1/1;
+      grid-column: 1/1;
+    }
+  }
+}
+
+.carrousel {
+  display: flex;
+  gap: 0.5rem;
+  overflow: scroll hidden;
+  scroll-snap-type: x mandatory;
+
+  .card {
+    scroll-snap-align: center;
+    width: 20rem;
+    flex-shrink: 0;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: 1rem;
+}

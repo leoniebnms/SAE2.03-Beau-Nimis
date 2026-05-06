@@ -1,0 +1,68 @@
+@import "reset.css";
+
+.page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(31, 106, 219);
+}
+
+/* - Burger -- */
+.burger {
+  /* Faire disparaître les styles par défaut du bouton */
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  /* Optionnel : garder la bordure rouge pour le debug si souhaité */
+  border: solid 1px red;
+
+  /* - Burger lines -- */
+  & .burger__line {
+    /* Transitions état final :hover > état initial | Retour */
+    /* On définit les transitions pour l'opacité et la translation avec une durée de 0.3s chacune */
+    transition:
+      opacity 0.3s ease-in-out,
+      translate 0.3s ease-in-out,
+      rotate 0.3s ease-in-out;
+
+    /* Temporisation de la transition : on attend 0.5s avant de commencer la translation et 0s avant de commencer l'opacité */
+    transition-delay: 0.8s, 0.3s, 0s;
+
+    /* On détermine l'origine des transformations pour chaque ligne (relatif à l'élément lui-même et non au centre du svg) */
+    transform-box: fill-box;
+    transform-origin: center;
+
+    &:nth-child(2) {
+      /* Opacité à 1 */
+      opacity: 1;
+    }
+  }
+
+  /* - hover ---- */
+  &:hover .burger__line {
+    /* Transitions état initial> état final :hover | Allé
+    opacity 0s > translate .3s */
+    transition-delay: 0s, 0.5s, 0.8s;
+    /* Temporisation de la transition : on attend 0s avant de commencer l'opacité et 0.5s avant de commencer la translation*/
+
+    &:nth-child(1) {
+      /* Translation sur l'axe des y de 9px */
+      translate: 0 9px;
+      rotate: 45deg;
+    }
+
+    &:nth-child(2) {
+      /* Opacité à 0 */
+      opacity: 0;
+    }
+
+    &:nth-child(3) {
+      /* Translation sur l'axe des y de -9px */
+      translate: 0 -9px;
+      rotate: -45deg;
+    }
+  }
+}

@@ -1,0 +1,72 @@
+@import "reset.css";
+
+/* - Global --- */
+
+:root {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --fg: var(--color-black);
+  --bg: var(--color-white);
+}
+
+body {
+  font: 900 1rem/1.4 sans-serif;
+  color: var(--fg);
+  background-color: var(--bg);
+
+  /* La pseudo-classe :has() permet de cibler un élément si au moins un des sélecteurs passés en paramètre correspond à l'élément */
+  &:has(input[type="checkbox"]:checked) {
+    /* Change la couleur d'arrière plan du body */
+    --bg: var(--color-black);
+    --fg: var(--color-white);
+  }
+}
+
+/* -- label --- */
+
+.label {
+  display: inline-flex;
+  margin: 1em auto;
+  padding: 0.5rem 1rem;
+  color: var(--fg);
+  border: solid 2px var(--fg);
+
+  border-radius: 0.5rem;
+  cursor: pointer;
+  user-select: none; /* Empêche le texte d'être sélectionné lors d'un double-clic */
+}
+
+/* -- Element à modifier --- */
+.controle-me {
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.control-me {
+  /* Transitions */
+}
+
+/* -- Checkbox --- */
+
+input[type="checkbox"] {
+  /* Faire disparaitre la checkbox */
+
+  /* + selecteur de frère adjacent direct (Les sélecteurs de voisin direct) */
+  /* Le combinateur '+' permet de sélectionner les nœuds qui suivent immédiatement un élément donné. */
+  &:checked + label {
+    /* Opacitée de 50% sur le label (frére adjacent direct) lorsque la checkbox est checked */
+    opacity: 0.5;
+    background-color: pink;
+  }
+
+  /* selecteur de frères proche ( sélecteurs de voisins) */
+  /* Le combinateur '~' permet de sélectionner les nœuds qui suivent un élément et qui ont le même parent. */
+  &:checked ~ .control-me {
+    /* Change la couleur d'arrière plan de cet élément frère lorsque */
+    height: 200px;
+    overflow: visible;
+    color: var(--bg);
+    background-color: var(--fg);
+  }
+}

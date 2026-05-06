@@ -1,0 +1,137 @@
+@import "reset.css";
+
+.page {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(31, 106, 219);
+}
+
+/* - Burger -- */
+.burger {
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+
+  & .burger__svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  & .burger__line {
+    transition:
+      opacity 0.3s,
+      translate 0.3s,
+      rotate 0.3s;
+
+    &:nth-child(1) {
+      /* Origine de la transformation pour la première ligne (16,7) */
+      transform-origin: 16px 7px;
+
+      /* Transitions état final :checked > état initial | Retour */
+      /* translate 0.3s 0.5s : Translation de 0.3s avec un délai de 0.5s */
+      /* rotate 0.4s 0s : Rotation de 0.4s avec un délai de 0s */
+      translate: 0.3s 0.5s;
+      rotate: 0.4s 0s;
+    }
+
+    &:nth-child(2) {
+      /* Transitions état final :checked > état initial | Retour */
+      /* opacity 1s 0.4s : Opacité de 1s avec un délai de 0.4s */
+      opacity: 1;
+    }
+
+    &:nth-child(3) {
+      /* Origine de la transformation pour la dernière ligne (16,25) */
+      transform-origin: 16px 25px;
+
+      /* Transitions état final :checked > état initial | Retour */
+      /* translate 0.3s 0.5s : Translation de 0.3s avec un délai de 0.5s */
+      /* rotate 0.4s 0s : Rotation de 0.4s avec un délai de 0s */
+      translate: 0.3s 0.5s;
+      rotate: 0.4s 0s;
+    }
+  }
+
+  /* - hover ---- */
+  &:hover .burger__line {
+    transition-delay: 0s, 0.5s, 0.8s;
+
+    &:nth-child(1) {
+      /* Translation sur l'axe des y de 3px */
+      translate: 0 3px;
+    }
+
+    &:nth-child(2) {
+      /* Opacité à 0 */
+      opacity: 0;
+
+      /* Transitions état initial > état final :hover | Allé */
+      /* opacity 1s : Opacité de 1s */
+      opacity: 1;
+    }
+
+    &:nth-child(3) {
+      /* Translation sur l'axe des y de -3px */
+      translate: 0 -3px;
+    }
+  }
+}
+
+/* nav */
+.nav {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: rgb(0, 0, 0, 0.3);
+  translate: 100% 0;
+  transition: translate 0.3s ease-in-out;
+}
+
+/* - Checked & UI Logic ---- */
+
+input[type="checkbox"] {
+  /* -- Checkbox : Disparition de l'élément checkbox --- */
+  appearance: none;
+
+  /* - Checked ---- */
+  &:checked ~ .burger .burger__line {
+    transition-delay: 0s, 0.5s, 0.8s;
+
+    &:nth-child(1) {
+      /* Translation et rotation */
+      /* translate 0 9px : Translation de 0 sur l'axe des x et 9px sur l'axe des y */
+      translate: 0 9px;
+      /* rotate 45deg : Rotation de 45 degrés */
+      rotate: 45deg;
+      /* Transitions état initial > état final :checked | Allé */
+      /* transition-delay: 0s, 0.5s : Délai de 0s pour la translation et 0.5s pour la rotation */
+    }
+
+    &:nth-child(2) {
+      /* Opacité 0 */
+      opacity: 0;
+    }
+
+    &:nth-child(3) {
+      /* Translation et rotation */
+      /* translate 0 -9px : Translation de 0 sur l'axe des x et -9px sur l'axe des y */
+      translate: 0 -9px;
+      /* rotate -45deg : Rotation de -45 degrés */
+      rotate: -45deg;
+      /* Transitions état initial > état final :checked | Allé */
+      /* transition-delay: 0s, 0.5s : Délai de 0s pour la translation et 0.5s pour la rotation */
+    }
+  }
+  &:checked ~ .nav {
+    border: solid 2px red;
+    translate: 0 0;
+  }
+}

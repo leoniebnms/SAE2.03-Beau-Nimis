@@ -23,12 +23,22 @@
       color: var(--color-hover);
     }
   }
+
+  .navbar__items{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+  }
 }
 
 .navbar__list{
   display: flex;
-  gap: 1.5rem;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+  gap: 1.5rem;
 }
 
 .navbar__fav:hover {
@@ -51,6 +61,7 @@
 .navbar__profile:hover{
   color: var(--color-hover);
 }
+
 
 .navbar__profile:focus {
   outline: none;

@@ -1,0 +1,116 @@
+@import "reset.css";
+@import "variables.css";
+
+:root {
+  --clr-fg: var(--clr-light);
+  --clr-bg: var(--clr-purple);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: var(--clr-gray-light);
+}
+
+/* card-one */
+.card {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  margin: 0 auto;
+  padding: 1.5rem;
+  gap: 0.5rem;
+  border-radius: 0.4rem;
+  font-family: var(--ff-font);
+  color: var(--clr-fg);
+  background-color: var(--clr-bg);
+}
+
+.card__title {
+  text-align: center;
+  padding-bottom: 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--clr-fg);
+}
+
+.card__title--span {
+  color: var(--clr-yellow);
+}
+
+.card__title--spantwo {
+  font-style: italic;
+}
+
+.card__img {
+  width: 7rem;
+  margin: 0 auto;
+}
+
+.card__subtitle {
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 70%;
+}
+
+/* card-two (platforms) */
+.card--platforms {
+  --clr-bg: var(--clr-light);
+  --clr-fg: var(--clr-dark);
+
+  .card__img {
+    width: 16rem;
+  }
+
+  .card__title {
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+}
+
+/* card-three (consistent) */
+.card--consistent {
+  --clr-bg: var(--clr-yellow);
+  --clr-fg: var(--clr-dark);
+
+  .card {
+    margin: 0rem;
+    padding: 0rem;
+  }
+
+  .card__img {
+    width: 10rem;
+    margin: 0;
+    align-self: flex-start;
+  }
+
+  .card__title {
+    text-align: left;
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+}
+
+/* card-three (schedule) */
+.card--schedule {
+  --clr-fg: var(--clr-dark);
+  --clr-bg: var(--clr-purple-light);
+
+  .card__img {
+    width: 13rem;
+  }
+}
+
+/* card-four (followers) */
+.card--followers {
+  .card__img {
+    width: 13rem;
+  }
+
+  .card__subtitle {
+    font-size: 1.4rem;
+    opacity: 100%;
+  }
+}
