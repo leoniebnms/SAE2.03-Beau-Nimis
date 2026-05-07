@@ -2,6 +2,20 @@
   <section class="movie" onclick ="C.handlerDetail('{{id}}')">
     <img src="../server/images/{{image}}" alt="Affiche de {{name}}" class="movie__img">
     <h2 class="movie__name">{{name}}</h2>
+  
+
+    <div class="movie__popover">
+      <img src="../server/images/{{image}}" class="popover__banner">
+      
+      <div class="popover__content">
+        <h3 class="popover__title">{{name}}</h3>
+        <p class="popover__meta">{{year}} - {{length}} min - {{min_age}} ans</p>
+        <p class="popover__description">{{description}}</p>
+        <div class="popover__footer">
+          <span class="popover__category">{{id_category}}</span>
+        </div>
+      </div>
+    </div>
   </section>
 </div>
 

@@ -34,7 +34,7 @@ body{
 
 .btn {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     gap: 1.25rem; 
 }

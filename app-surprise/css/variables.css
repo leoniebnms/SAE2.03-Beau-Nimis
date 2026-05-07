@@ -7,17 +7,38 @@
 
   --color-green: hsl(159, 100%, 55%);
   --color-green-light: hsl(169, 100%, 55%);
-  --color-black-blue: hsl(222, 23%, 9%);
+  --color-black-blue: hsl(222, 22%, 9%);
   --color-black: hsl(0, 0%, 6%);
   --color-gray-dark: hsl(0, 0%, 10%);
   --color-gray-light: hsl(0, 0%, 60%);
+  --color-gray: hsl(0, 0%, 36%);
   --color-white: hsl(0, 0%, 100%);
-  
+
+  /* Font size */
+  /* infos des films */
+  --font-size-xs: 0.7rem; 
+
+  /* texte du bouton, texte de la barre, titre du film */
+  --font-size-s: 0.875rem;
+
+  /* nav */
+  --font-size-m: 1rem;
+
+/* titre des sections, sous titre hero */
+  --font-size-l: 1.5rem;
+
+/* titre hero */
+  --font-size-xl: 3em;
+
 
   /* Sementic Tokens */
   --color-title: var(--color-white);
   --color-bg: var(--color-black-blue);
+  --color-bg-form: var(--color-black);
   --color-hover: var(--color-green);
+  --color-text-btn: var(--color-black);
   --color-btn: var(--color-green);
   --color-btn-hover: var(--color-green-light);
+  --color-text-btn: var(--color-black);
+  --color-line: var(--color-gray);
 }

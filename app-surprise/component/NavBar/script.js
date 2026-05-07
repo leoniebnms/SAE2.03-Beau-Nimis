@@ -3,6 +3,9 @@ import { DataProfile } from '../../data/dataProfile.js';
 let templateFile = await fetch("./component/NavBar/template.html");
 let template = await templateFile.text();
 
+let templateheroFile = await fetch("./component/NavBar/template-hero.html");
+let templatehero = await templateheroFile.text();
+
 
 let NavBar = {};
 
@@ -21,7 +24,7 @@ NavBar.format = async function (hAbout, hHome, hProfile, hFav) {
     html = html.replace('{{profile_options}}', optionsHtml);
 
   
-  return html;
-};
+  return  html + templatehero;
+};  
 
 export { NavBar };

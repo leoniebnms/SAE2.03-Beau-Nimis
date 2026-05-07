@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/variables.css" />
   </head>
 
   <body>
@@ -23,6 +24,7 @@
       import { MovieFeatured } from "./component/MovieFeatured/script.js";
       import { DataFeatured } from "./data/dataFeatured.js";
 
+      window.DataFeatured = DataFeatured;
 
       // Controleur
       // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
@@ -57,12 +59,6 @@
         document.getElementById('content').innerHTML = detailHTML;
       };
 
-
-      // C.handlerAbout = function () {
-      //   alert(
-      //     "Ceci est une base de projet pour la SAE2.03 édition 2025. Bonne chance !"
-      //   );
-      // };
 
       // C'était pour l'itération 1
       //  C.handlerCategory = async function () {
@@ -187,9 +183,6 @@
         let content = document.querySelector("#content");
         // content.innerHTML = await MovieCategory.format(profiles);
       }; 
-      
-
-     
       
       C.start(); // Démarre l'application
     </script>

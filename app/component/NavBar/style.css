@@ -23,8 +23,8 @@
 
 .navbar__list{
   display: flex;
-  gap: 1rem;
   align-items: center;
+  gap: 1rem;
 }
 
 .navbar__profile {

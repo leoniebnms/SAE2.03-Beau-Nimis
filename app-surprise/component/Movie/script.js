@@ -15,13 +15,18 @@ Movie.format =  async function (movies) {
 
   
   let menuItems = "";
+
   for (let movie of movies) {
     let item = template;
 
 
-    item = item.replace("{{image}}", movie.image);
+    item = item.replaceAll("{{image}}", movie.image);
     item = item.replaceAll("{{name}}", movie.name);
     item = item.replaceAll("{{id}}", movie.id);
+
+
+    item = item.replace("{{id_category}}", movie.category__name);
+
     menuItems += item;
   }
   return menuItems;

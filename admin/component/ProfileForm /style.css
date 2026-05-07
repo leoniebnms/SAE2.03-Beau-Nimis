@@ -1,25 +1,24 @@
 .addProfile {
-    width:30rem;
+    width: 30rem;
     padding: 2rem;
     background-color: var(--color-black);
-    
 }
 
 .addProfile__title {
     margin-bottom: 2rem;
     padding-left: 1rem;
-    letter-spacing: 0.2rem;
-    text-transform: uppercase;
-    font-weight: 300;
-    font-size: 1.2rem;
     border-left: 3px solid var(--color-white);
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-size: 1.2rem;
+    font-weight: 300;
     color: var(--color-white);
 }
 
 .addProfile__form {
     display: flex;
     flex-direction: column;
-    padding:1.5rem;
+    padding: 1.5rem;
     gap: 1.2rem;
 }
 
@@ -39,16 +38,16 @@
 }
 
 .addProfile__form input[type=button] {
-    margin-top: 2.5rem;
-    background-color: var(--color-white);
-    color: var(--color-black);
     height: 3rem;
-    font-weight: 700;
+    margin-top: 2.5rem;  
+    border: 1px solid #fff;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
-    cursor: pointer;
-    border: 1px solid #fff;
+    font-weight: 700;
+    color: var(--color-black);
+    background-color: var(--color-white);
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 
@@ -63,11 +62,11 @@
 .adminSection__title {
     margin-bottom: 2rem;
     padding-left: 1rem;
-    letter-spacing: 0.2rem;
-    text-transform: uppercase;
-    font-weight: 300;
-    font-size: 1.2rem;
     border-left: 3px solid var(--color-white);
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-size: 1.2rem;
+    font-weight: 300;
     color: var(--color-white);
 }
 
@@ -89,14 +88,14 @@
 
 
 .adminItem__btn {
-    margin-top: 2.5rem;
-    background-color: var(--color-white);
-    color: var(--color-black);
     height: 3rem;
-    font-weight: 700;
+    margin-top: 2.5rem;
+    border: 1px solid #fff;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
-    cursor: pointer;
-    border: 1px solid #fff;
+    font-weight: 700; 
+    color: var(--color-black);
+    background-color: var(--color-white);
     transition: all 0.3s ease;
+    cursor: pointer;
 } 
